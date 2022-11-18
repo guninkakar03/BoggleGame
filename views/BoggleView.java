@@ -23,7 +23,8 @@ public class BoggleView {
     BoggleGame game; //reference to game
     Stage stage;
 
-    Label scoreLabel = new Label("");
+    // Label to display current word that player has created
+    Label currWordLabel = new Label("");
 
     /**
      * Constructor
@@ -44,11 +45,11 @@ public class BoggleView {
     private void initUI() {
         this.stage.setTitle("boggle.edu");
 
-        //labels
-        scoreLabel.setId("ScoreLabel");
+        // Set properties of current word label
+        currWordLabel.setId("CurrentWordLabel");
 
-        scoreLabel.setText("");
-        scoreLabel.setFont(new Font(20));
-        scoreLabel.setStyle("-fx-text-fill: #e8e6e3");
+        currWordLabel.setText("");
+        currWordLabel.setFont(new Font(20));
+        currWordLabel.setStyle("-fx-text-fill: #e8e6e3");
     }
 }
