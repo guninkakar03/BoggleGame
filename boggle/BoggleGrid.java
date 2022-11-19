@@ -75,4 +75,13 @@ public class BoggleGrid {
         return this.board[row][col];
     }
 
+    public abstract static class Grid {
+
+        // width of the Boggle Board
+        private int width;
+
+        // height of the Boggle Board
+        private int height;
+
+    }
 }
