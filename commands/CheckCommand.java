@@ -1,21 +1,26 @@
 package commands;
 
+/**
+ * Concrete command to check that the current word in the reciever is a real word
+ */
 public class CheckCommand implements command{
 
     /**
-     * the receiver that this command will be acting on
+     * The receiver that this command will be acting on
      */
     Object receiver;
 
-    /*
+    /**
      * ClearCommand constructor
+     *
+     * @param receiver the reciever that this command will act on
      */
     public CheckCommand(Object receiver){
         this.receiver = receiver;
     }
 
-    /*
-     * Command to check if the current word in the receiver is a word, then clear the word
+    /**
+     * Calls the check and clear method in the reciever when checking if the current word is a real word
      */
     @Override
     public void execute() {

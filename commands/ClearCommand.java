@@ -1,21 +1,26 @@
 package commands;
 
+/**
+ * Concrete command to clear the current word in the reciever
+ */
 public class ClearCommand implements command{
 
     /**
-     * the receiver that this command will be acting on
+     * The receiver that this command will be acting on
      */
     Object receiver;
 
-    /*
+    /**
      * ClearCommand constructor
+     *
+     * @param receiver the reciever that this command will act on
      */
     public ClearCommand(Object receiver){
         this.receiver = receiver;
     }
 
-    /*
-     * Command to clear the current word in the receiver
+    /**
+     * Calls the clear method in the reciever to clear the current word in the receiver
      */
     @Override
     public void execute() {
