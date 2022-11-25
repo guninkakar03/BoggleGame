@@ -19,7 +19,7 @@ public class RectangleGrid extends Grid {
         this.board = new char[width][height];
     }
 
-    public void initaliseBoard(String letters) {
+    public void initializeBoard(String letters) {
         throw new UnsupportedOperationException();
     }
 
