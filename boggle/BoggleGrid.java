@@ -30,7 +30,7 @@ public class BoggleGrid {
      *
      * @param letters a string of letters, one for each grid position.
      */
-    public void initalizeBoard(String letters) {
+    public void initializeBoard(String letters) {
         for(int i=0; i<letters.length(); i++){
             this.board[i/this.size][i%this.size] = letters.charAt(i);
         }
@@ -75,4 +75,13 @@ public class BoggleGrid {
         return this.board[row][col];
     }
 
+    public abstract static class Grid {
+
+        // width of the Boggle Board
+        private int width;
+
+        // height of the Boggle Board
+        private int height;
+
+    }
 }
