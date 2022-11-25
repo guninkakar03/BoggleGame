@@ -1,0 +1,6 @@
+.*/
+out/
+*.xml
+*.iml
+*.log
+*.class
