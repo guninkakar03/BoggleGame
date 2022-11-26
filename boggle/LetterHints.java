@@ -24,6 +24,8 @@ public class LetterHints extends Hints {
      *
      */
     public String get_letter_meaning(String word){
+
+        // to do this
         throw new UnsupportedOperationException();
     }
 }
