@@ -1,5 +1,2 @@
-package boggle;
-
-public class Player {
-
+package boggle;public class Player {
 }
