@@ -1,24 +1,56 @@
 package dice;
 
 /**
- * Abstract die class that other concrete die classes will inherit for roll functionality
+ * Die class
  */
-public abstract class Die {
+public class Die {
+
+    /**
+     * A string of the alphabet for the Die to roll from, if a string of letters is not given when constructed
+     */
+    private final String ALPHABET = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
     /**
      * The letters that the die can roll from
      */
-    String letters;
+    private String letters;
 
     /**
      * The letter that is currently shown on the die
      */
-    char upFace;
+    private char upFace;
+
+    /**
+     * Constructor
+     */
+    public Die() {
+        this.letters = ALPHABET;
+        this.roll();
+    }
+
+    /**
+     * Constructor
+     *
+     * @param letters a string of letters that this die can roll from
+     */
+    public Die(String letters){
+        this.letters = letters;
+        this.roll();
+    }
 
     /**
      * Rolls the die by randomly choosing the upFace from letters
      */
     public void roll(){
         this.upFace = letters.charAt((int)(Math.random() * (letters.length() - 1)));
+    }
+
+    /**
+     * Print the letter that is on the up face of the die
+     *
+     * @return a string representation of the die
+     */
+    public String toString(){
+        return Character.toString(this.upFace);
     }
 }
