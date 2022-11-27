@@ -36,7 +36,6 @@ public class ComputerPlayer extends Player{
         } else {
             this.Score += 1;
         }
-
     }
 
 

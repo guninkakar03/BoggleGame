@@ -25,12 +25,13 @@ public class HumanPlayer extends Player {
      * ----------------------
      */
     public HumanPlayer() {
+
         this.Score = 0;
     }
 
     public void addWord(String word){
         if (playerWords.contains(word)){
-            System.out.println("You have already guesses this word lol!!");
+            System.out.println("You have already guesses this word!!");
         } else if (gameStats.allWords.containsKey(word)){
             playerWords.add(word);
             updateScore(word);
