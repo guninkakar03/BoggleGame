@@ -1,6 +1,8 @@
 package boggle;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Objects;
 
 public class DiamondGrid extends Grid{
 
@@ -70,6 +72,12 @@ public class DiamondGrid extends Grid{
 
     }
 
+    /*
+     *
+     * This is a helper function for the initializeBoard.
+     *
+     * @param letter for a particular row of grid.
+     */
     public String add_space(int width, String letter){
         if(letter.length() == width){
             return letter;
