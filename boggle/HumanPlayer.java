@@ -8,18 +8,22 @@ import java.util.Set;
  * This class keeps track of the player's information essential to the game
  *
  */
+
 public class HumanPlayer extends Player {
 
     /**
      * set of words the player finds in a given round
      */
     private Set<String> playerWords = new HashSet<String>();
+
     private GameStats gameStats;
+
 
     /**
      * the player's score for the current round
      */
     private int Score;
+
 
     /* HumanPlayer constructor
      * ----------------------
@@ -51,6 +55,7 @@ public class HumanPlayer extends Player {
         }
 
     }
+
 
 
 }
