@@ -1,5 +1,9 @@
 package boggleIO;
 
+import boggle.BoggleGrid;
+
+import java.util.HashMap;
+
 public class OutputWriter {
 
     /**
@@ -13,8 +17,9 @@ public class OutputWriter {
         System.out.println("\tstart : start the boggle game with the current settings");
     }
 
-    public void printGameSettings(String shape, int[] dimensions, boolean dyslexiaMode){
+    public void printGameSettings(String shape, String difficulty, int[] dimensions, boolean dyslexiaMode){
         System.out.println("Current game settings:");
+        System.out.println("\tDifficulty of board: " + difficulty.toUpperCase());
         System.out.println("\tShape of board: " + shape.toUpperCase());
         if(shape.equalsIgnoreCase("rectangle")){
             System.out.println("\tWidth: " + dimensions[0]);
@@ -25,5 +30,9 @@ public class OutputWriter {
         } else {
             System.out.println("\tDyslexia mode is OFF");
         }
+    }
+
+    public void printGameBoard(BoggleGrid board, String difficulty, boolean dyslexiaMode){
+        // loop through each die in the board and print it
     }
 }

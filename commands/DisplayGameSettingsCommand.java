@@ -22,7 +22,7 @@ public class DisplayGameSettingsCommand implements command{
     }
 
     /**
-     * Calls the printPossibleInputs method in the receiver to print the possible inputs the user can input
+     * Calls the printSettings method in the receiver to print the settings of the game
      */
     @Override
     public void execute() {

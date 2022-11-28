@@ -36,9 +36,19 @@ public class BoggleGame {
     public boolean dyslexiaMode;
 
     /**
+     * temporary variable to keep track of the difficulty of the game
+     */
+    public String difficulty;
+
+    /**
      * scanner used to interact with the user via console
      */
     public OutputWriter writer;
+
+    /**
+     * stores the current board of dice
+     */
+    public BoggleGrid board;
 
     /**
      * stores game statistics
@@ -75,7 +85,15 @@ public class BoggleGame {
     }
 
     public void printSettings(){
-        this.writer.printGameSettings(this.boardShape, this.boardDimensions, this.dyslexiaMode);
+        this.writer.printGameSettings(this.boardShape, this.difficulty, this.boardDimensions, this.dyslexiaMode);
+    }
+
+    public void printBoard(){
+        this.writer.printGameBoard(this.board, this.difficulty, this.dyslexiaMode);
+    }
+
+    public void checkCurrentWord(String word){
+        // TO BE IMPLEMENTED
     }
 
     /* 
@@ -111,6 +129,16 @@ public class BoggleGame {
 
     public void setBoardDimensions(int[] dimensions){
         this.boardDimensions = dimensions;
+    }
+
+    public void setBoardDifficulty(String difficulty){
+        if(difficulty.equalsIgnoreCase("E")){
+            this.boardShape = "easy";
+        } else if(difficulty.equalsIgnoreCase("M")){
+            this.boardShape = "medium";
+        } else if(difficulty.equalsIgnoreCase("H")){
+            this.boardShape = "hard";
+        }
     }
 
 

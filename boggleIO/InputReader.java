@@ -105,6 +105,35 @@ public class InputReader {
     }
 
     /**
+     * Prompt the user to input the difficulty of the board. Easy will have more vowels and S's. Medium will just be
+     * regular dice, where each letter in the alphabet is equally likely to appear. Hard will have more difficult letters
+     * appear more often.
+     *
+     * @param receiver the receiver that will be modified as the user changes the board shape
+     */
+    private void getBoardDifficulty(BoggleGame receiver){
+        // prompt the user to input the difficulty of the board
+        System.out.println("What difficulty would you like your board to be? (write E for easy, M for medium, or H for hard)");
+        String input = this.scanner.nextLine();
+
+        // keep prompting the user until the input is valid
+        while(!(input.equalsIgnoreCase("E")||input.equalsIgnoreCase("M")||input.equalsIgnoreCase("H"))){
+            System.out.println("Invalid input");
+            System.out.println("Type E for easy, M for medium, or H for hard");
+            input = this.scanner.nextLine();
+        }
+
+        // once the user inputs a valid string, set the command and execute it
+        this.inputCommand = new ChangeBoardDifficultyCommand(receiver, input);
+        this.inputCommand.execute();
+
+        // if the shape of the board is a rectangle, prompt the user to set the dimension of the rectangle
+        if(input.equalsIgnoreCase("R")){
+            getBoardDimensions(receiver);
+        }
+    }
+
+    /**
      * Prompt the user to input whether or not dyslexia mode should be enabled
      *
      * @param receiver the receiver that will be modified as the user changes the dyslexia mode
@@ -160,6 +189,35 @@ public class InputReader {
                     break;
                 default:
                     System.out.println("Invalid command");
+                    break;
+            }
+        }
+    }
+
+    /**
+     * Read the word that the user inputs while playing the game
+     *
+     * @param receiver the BoggleGame that commands will be executed on
+     */
+    public void readGameInput(BoggleGame receiver){
+        boolean stopCommandCalled = false;
+
+        // User can keep inputting commands until they input the start command
+        while(!stopCommandCalled){
+            this.inputCommand = new DisplayBoardCommand(receiver);
+            this.inputCommand.execute();
+            System.out.println("Input word (or type -end to end your turn:");
+            String input = this.scanner.nextLine();
+            // Check the word being inputted, or the -end command to end the round
+            switch (input.toLowerCase()){
+                case "-end":
+                    stopCommandCalled = true;
+                    this.inputCommand = new EndTurnCommand(receiver);
+                    this.inputCommand.execute();
+                    break;
+                default:
+                    this.inputCommand = new CheckWordCommand(receiver, input.toLowerCase());
+                    this.inputCommand.execute();
                     break;
             }
         }
