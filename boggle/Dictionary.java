@@ -1,6 +1,10 @@
 package boggle;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -142,7 +146,7 @@ public class Dictionary {
     /*
      * Returns the updated Hashmap containing the word as keys and meaning as the meanings of the wordlist
      */
-    public HashMap<String,String> get_wrd_meanings(){
+    public HashMap<String,String> get_word_meanings(){
         return this.word_meaning;
     }
 
