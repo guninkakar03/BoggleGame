@@ -20,6 +20,32 @@ public class Dictionary {
      * Hashmap to store the words and their respective meanings from wordlist.
      */
     private HashMap<String, String> word_meaning;
+
+    public Dictionary( String filename) {
+
+        String line = "";
+        int wordcount = 0;
+        this.legalWords = new TreeSet<String>();
+        this.word_meaning = new HashMap<String, String>();
+        try
+        {
+            BufferedReader br = new BufferedReader(new FileReader(filename));
+            while ((line = br.readLine()) != null)
+            {
+                if (line.strip().length() > 0) {
+                    legalWords.add(line.strip());
+                    wordcount++;
+                }
+            }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        } catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        System.out.println("Initialized " + wordcount + " words in the Dictionary.");;
+    }
+
     /**
      * Class constructor 
      * 
@@ -31,24 +57,7 @@ public class Dictionary {
         //read in the file that has all the valid words
         String line = "";
         int wordcount = 0;
-//        this.legalWords = new TreeSet<String>();
-//        this.word_meaning = new HashMap<String, String>();
-//        try
-//        {
-//            BufferedReader br = new BufferedReader(new FileReader(filename));
-//            while ((line = br.readLine()) != null)
-//            {
-//                if (line.strip().length() > 0) {
-//                    legalWords.add(line.strip());
-//                    wordcount++;
-//                }
-//            }
-//        } catch (FileNotFoundException e) {
-//            throw new RuntimeException(e);
-//        } catch (IOException e)
-//        {
-//            e.printStackTrace();
-//        }
+
 
         this.legalWords = allWords;
 
@@ -105,7 +114,7 @@ public class Dictionary {
         {
             e.printStackTrace();
         }
-        System.out.println("Initialized " + wordcount + " words in the Dictionary.");;
+        System.out.println("Initialized " + wordcount + " words in the Dictionary.");
     }
 
     /* 

@@ -76,7 +76,7 @@ public class BoggleTests {
     @Test
     void dictionary() {
 
-        //Dictionary dict = new Dictionary("wordlist.txt");
+        Dictionary dict = new Dictionary("wordlist.txt");
 
     }
 
