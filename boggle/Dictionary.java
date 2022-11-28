@@ -88,13 +88,9 @@ public class Dictionary {
                 }
             }
         }
-        }
-        catch (IOException e)
-        {
+        } catch (IOException e) {
             e.printStackTrace();
         }
-
-
         System.out.println("Initialized " + wordcount + " words in the Dictionary.");;
     }
 
