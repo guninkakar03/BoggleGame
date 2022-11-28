@@ -1,10 +1,9 @@
 package boggle;
 
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.TreeSet;
 
 /**
@@ -29,6 +28,26 @@ public class Dictionary {
      */
     public Dictionary(String filename) {
 
+
+        List<String> csvList = new ArrayList<>();
+        File csvFiles = new File("/CSV Files");
+
+        //loads all of the csv files into the list
+        if(csvFiles.listFiles() != null){
+            for (String csv: csvFiles.list()) {
+                csvList.add(csv);
+            }
+        }
+
+
+
+
+        for (int i = 0; i < 26 ; i++) {
+
+
+        }
+
+
         String line = "";
         int wordcount = 0;
         this.legalWords = new TreeSet<String>();
@@ -48,6 +67,8 @@ public class Dictionary {
         {
             e.printStackTrace();
         }
+
+
         System.out.println("Initialized " + wordcount + " words in the Dictionary.");;
     }
 
