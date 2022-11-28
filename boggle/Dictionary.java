@@ -19,7 +19,7 @@ public class Dictionary {
     /**
      * Hashmap to store the words and their respective meanings from wordlist.
      */
-    private HashMap<String, String> wrd_meaning;
+    private HashMap<String, String> word_meaning;
     /**
      * Class constructor 
      * 
@@ -28,29 +28,16 @@ public class Dictionary {
      */
     public Dictionary(String filename) {
 
-
-        List<String> csvList = new ArrayList<>();
-        File csvFiles = new File("/CSV Files");
-
-        //loads all of the csv files into the list
-        if(csvFiles.listFiles() != null){
-            for (String csv: csvFiles.list()) {
-                csvList.add(csv);
-            }
-        }
-
-
-
-
         for (int i = 0; i < 26 ; i++) {
 
 
         }
 
-
+        //read in the file that has all the valid words
         String line = "";
         int wordcount = 0;
         this.legalWords = new TreeSet<String>();
+        this.word_meaning = new HashMap<String, String>();
         try
         {
             BufferedReader br = new BufferedReader(new FileReader(filename));
@@ -64,6 +51,42 @@ public class Dictionary {
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         } catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+        //Start to read in the csv files with the word meanings
+        List<String> csvList = new ArrayList<>();
+        File csvFiles = new File("CSV files");
+
+        //loads all of the csv files into the list
+        if(csvFiles.listFiles() != null){
+            for (String csv: csvFiles.list()) {
+                csvList.add(csv);
+            }
+        }
+
+
+        for (String word: this.legalWords) {
+            this.word_meaning.put(word, "");
+        }
+
+        // Go through each of the csv files with the word meanings and map them to their respective words
+        String splitBy = ",";
+        try
+        {
+            for (int i = 0; i < csvList.size(); i++) {
+
+
+                //parsing a CSV file into BufferedReader class constructor
+                BufferedReader br = new BufferedReader(new FileReader(csvList.get(i)));
+                while ((line = br.readLine()) != null)   //returns a Boolean value
+                {
+
+                }
+            }
+        }
+        catch (IOException e)
         {
             e.printStackTrace();
         }
@@ -98,7 +121,7 @@ public class Dictionary {
      * Returns the updated Hashmap containing the word as keys and meaning as the meanings of the wordlist
      */
     public HashMap<String,String> get_wrd_meanings(){
-        return this.wrd_meaning;
+        return this.word_meaning;
     }
 
 }
