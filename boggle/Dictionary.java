@@ -77,14 +77,25 @@ public class Dictionary {
         { for (String word: this.word_meaning.keySet()) {
             for (int i = 0; i < csvList.size(); i++) {
                 //parsing a CSV file into BufferedReader class constructor
-                BufferedReader br = new BufferedReader(new FileReader(csvList.get(i)));
+                BufferedReader br = new BufferedReader(new FileReader("CSV Files/"+csvList.get(i)));
                 while ((line = br.readLine()) != null){   //returns a Boolean value
                 // Separating the word and the meaning part to populate the dictionary
-                    String word_part=line.substring(0,line.indexOf("")+1).toLowerCase();
-                    String meaning_part=line.substring(line.indexOf(')')).replace(",","");
-                    if(word_part.equals(word))
+                    int indexStart = 0;
+                    if(line.contains("\"")){
+
+                        indexStart+=1;
+                    }
+                    int index = line.indexOf(" ");
+
+                    String wordPart=line.substring(indexStart, index).toLowerCase();
+                    String meaning_part=line.substring(line.indexOf(')') + 1, line.length()-indexStart).replace(",","");
+                    String checked = word;
+                    if(wordPart.equals(word))
                         // Populating the dictionary with the word and its meaning.
                         this.word_meaning.put(word,meaning_part);
+
+
+                    br.readLine();
                 }
             }
         }
