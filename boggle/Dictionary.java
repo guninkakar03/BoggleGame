@@ -78,8 +78,8 @@ public class Dictionary {
             for (int i = 0; i < csvList.size(); i++) {
                 //parsing a CSV file into BufferedReader class constructor
                 BufferedReader br = new BufferedReader(new FileReader(csvList.get(i)));
-                while ((line = br.readLine()) != null)   //returns a Boolean value
-                {// Separating the word and the meaning part to populate the dictionary
+                while ((line = br.readLine()) != null){   //returns a Boolean value
+                // Separating the word and the meaning part to populate the dictionary
                     String word_part=line.substring(0,line.indexOf("")+1).toLowerCase();
                     String meaning_part=line.substring(line.indexOf(')')).replace(",","");
                     if(word_part.equals(word))
