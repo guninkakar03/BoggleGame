@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.TreeSet;
 
 /**
@@ -16,13 +17,18 @@ public class Dictionary {
      * set of legal words for Boggle
      */
     private TreeSet<String> legalWords;
-
+    /**
+     * Hashmap to store the words and their respective meanings from wordlist.
+     */
+    private HashMap<String, String> wrd_meaning;
     /**
      * Class constructor 
      * 
      * @param filename the file containing a list of legal words.
+     *Fill the wrd_meaning Hashmap using the iterator pattern by parsing through the CSV files, to retrieve the meaning.
      */
     public Dictionary(String filename) {
+
         String line = "";
         int wordcount = 0;
         this.legalWords = new TreeSet<String>();
@@ -66,6 +72,12 @@ public class Dictionary {
             return false;
         }
         return this.legalWords.ceiling(str).contains(str);
+    }
+    /*
+     * Returns the updated Hashmap containing the word as keys and meaning as the meanings of the wordlist
+     */
+    public HashMap<String,String> get_wrd_meanings(){
+        return this.wrd_meaning;
     }
 
 }
