@@ -23,14 +23,14 @@ public class Dictionary {
     /**
      * Class constructor 
      * 
-     * @param filename the file containing a list of legal words.
+     * @param allWords list of all the words that we found in the grid.
      *Fill the wrd_meaning Hashmap using the iterator pattern by parsing through the CSV files, to retrieve the meaning.
      */
     public Dictionary(TreeSet<String> allWords) {
 
         //read in the file that has all the valid words
-//        String line = "";
-//        int wordcount = 0;
+        String line = "";
+        int wordcount = 0;
 //        this.legalWords = new TreeSet<String>();
 //        this.word_meaning = new HashMap<String, String>();
 //        try
