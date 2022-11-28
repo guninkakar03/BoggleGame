@@ -1,5 +1,8 @@
 package boggle;
 
+import boggleIO.InputReader;
+import boggleIO.OutputWriter;
+
 import java.util.*;
 
 /**
@@ -18,11 +21,29 @@ public class BoggleGame {
     public InputReader reader;
 
     /**
+     * temporary variable to hold the shape of the board
+     */
+    public String boardShape;
+
+    /**
+     * temporary variable to hold the board dimensions
+     */
+    public int[] boardDimensions;
+
+    /**
+     * temporary variable to hold whether or not dyslexia mode is turned on
+     */
+    public boolean dyslexiaMode;
+
+    /**
+     * scanner used to interact with the user via console
+     */
+    public OutputWriter writer;
+
+    /**
      * stores game statistics
      */ 
     private BoggleStats gameStats;
-
-    private boolean dyslexiaMode;
 
     /**
      * dice used to randomize letter assignments for a small grid
@@ -44,7 +65,17 @@ public class BoggleGame {
     public BoggleGame() {
         this.scanner = new Scanner(System.in);
         this.reader = new InputReader();
+        this.writer = new OutputWriter();
         this.gameStats = new BoggleStats();
+    }
+
+
+    public void printPossibleInputs(){
+        this.writer.printCommands();
+    }
+
+    public void printSettings(){
+        this.writer.printGameSettings(this.boardShape, this.boardDimensions, this.dyslexiaMode);
     }
 
     /* 
@@ -64,13 +95,22 @@ public class BoggleGame {
         System.out.println("\nHit return when you're ready...");
     }
 
-    public void toggleDyslexiaMode(){
-        this.dyslexiaMode = !this.dyslexiaMode;
-        if(this.dyslexiaMode){
-            System.out.println("Dyslexia mode has been turned on");
-        } else {
-            System.out.println("Dyslexia mode has been turned off");
+    public void setDyslexiaMode(boolean dyslexiaMode){
+        this.dyslexiaMode = dyslexiaMode;
+    }
+
+    public void setBoardShape(String shape){
+        if(shape.equalsIgnoreCase("R")){
+            this.boardShape = "rectangle";
+        } else if(shape.equalsIgnoreCase("D")){
+            this.boardShape = "diamond";
+        } else if(shape.equalsIgnoreCase("T")){
+            this.boardShape = "triangle";
         }
+    }
+
+    public void setBoardDimensions(int[] dimensions){
+        this.boardDimensions = dimensions;
     }
 
 
@@ -81,7 +121,7 @@ public class BoggleGame {
     public void playGame() {
         int boardSize;
         while (true) {
-            reader.ReadStartInput(this);
+            reader.getGameSettings(this);
 //            System.out.println("Enter 1 to play on a big (5x5) grid; 2 to play on a small (4x4) one:");
 //            String choiceGrid = scanner.nextLine();
 //
