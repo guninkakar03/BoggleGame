@@ -46,6 +46,24 @@ public class Die {
     }
 
     /**
+     * Setter to change the letters of this die
+     *
+     * @param letters the string of letters that this die should roll from
+     */
+    public void setLetters(String letters) {
+        this.letters = letters;
+    }
+
+    /**
+     * Getter that returns the letters of this die
+     *
+     * @return the string of letters that this die can roll from
+     */
+    public String getLetters() {
+        return this.letters;
+    }
+
+    /**
      * Print the letter that is on the up face of the die
      *
      * @return a string representation of the die
