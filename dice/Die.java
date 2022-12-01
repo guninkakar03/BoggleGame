@@ -1,7 +1,7 @@
 package dice;
 
 /**
- * Die class
+ * Die class to roll any letter in the alphabet
  */
 public class Die {
 
@@ -21,7 +21,7 @@ public class Die {
     private char upFace;
 
     /**
-     * Constructor
+     * Die constructor
      */
     public Die() {
         this.letters = ALPHABET;
