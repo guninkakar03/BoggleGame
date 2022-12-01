@@ -118,6 +118,21 @@ public class BoggleGame {
     public void endTurn(){
         throw new UnsupportedOperationException();
     }
+    
+    public void playRound(int size, String letters){
+        //step 1. initialize the grid
+        BoggleGrid grid = new BoggleGrid(size);
+//        grid.initalizeBoard(letters);
+        //step 2. initialize the dictionary of legal words
+        Dictionary boggleDict = new Dictionary("wordlist.txt"); //you may have to change the path to the wordlist, depending on where you place it.
+        //step 3. find all legal words on the board, given the dictionary and grid arrangement.
+        Map<String, ArrayList<Position>> allWords = new HashMap<String, ArrayList<Position>>();
+        findAllWords(allWords, boggleDict, grid);
+        //step 4. allow the user to try to find some words on the grid
+        humanMove(grid, allWords);
+        //step 5. allow the computer to identify remaining words
+        computerMove(allWords);
+    }
 
     /**
      * Action method which will start the boggle game
