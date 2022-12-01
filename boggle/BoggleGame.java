@@ -134,7 +134,7 @@ public class BoggleGame {
     public void playRound(int size, String letters){
         //step 1. initialize the grid
         BoggleGrid grid = new BoggleGrid(size);
-        grid.initalizeBoard(letters);
+//        grid.initalizeBoard(letters);
         //step 2. initialize the dictionary of legal words
         Dictionary boggleDict = new Dictionary("wordlist.txt"); //you may have to change the path to the wordlist, depending on where you place it.
         //step 3. find all legal words on the board, given the dictionary and grid arrangement.
