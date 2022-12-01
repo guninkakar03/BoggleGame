@@ -41,6 +41,11 @@ public class BoggleGame {
     public String difficulty;
 
     /**
+     * temporary variable to hold whether or not multiplayer is turned on
+     */
+    public boolean multiplayer;
+
+    /**
      * scanner used to interact with the user via console
      */
     public OutputWriter writer;
@@ -69,54 +74,90 @@ public class BoggleGame {
                     "BJKQXZ", "CCNSTW", "CEIILT", "CEILPT", "CEIPST", "DDLNOR", "DDHNOT", "DHHLOR",
                     "DHLNOR", "EIIITT", "EMOTTT", "ENSSSU", "FIPRSY", "GORRVW", "HIPRRY", "NOOTUW", "OOOTTU"};
 
-    /* 
+    /**
      * BoggleGame constructor
      */
     public BoggleGame() {
         this.scanner = new Scanner(System.in);
-        this.reader = new InputReader();
+        this.reader = new InputReader(this);
         this.writer = new OutputWriter();
         this.gameStats = new BoggleStats();
     }
 
-
+    /**
+     * Action method which calls OutputWriter.printCommannds() to print the commands the user can input.
+     */
     public void printPossibleInputs(){
         this.writer.printCommands();
     }
 
+    /**
+     * Action method which calls OutputWriter.printGameSettings() to print the current game settings.
+     */
     public void printSettings(){
         this.writer.printGameSettings(this.boardShape, this.difficulty, this.boardDimensions, this.dyslexiaMode);
     }
 
+    /**
+     * Action method which calls OutputWriter.printGameBoard() to print the current board.
+     */
     public void printBoard(){
-        this.writer.printGameBoard(this.board, this.difficulty, this.dyslexiaMode);
+        this.writer.printGameBoard(this.board);
     }
 
+    /**
+     * Action method which will check if the given word is a valid word
+     */
     public void checkCurrentWord(String word){
-        // TO BE IMPLEMENTED
+        throw new UnsupportedOperationException();
     }
 
-    /* 
-     * Provide instructions to the user, so they know how to play the game.
+    /**
+     * Action method which will end the players turn
+     */
+    public void endTurn(){
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Action method which will start the boggle game
+     */
+    public void startGame(){
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Action method which will display a hint for the player
+     */
+    public void getHint(){
+        throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Action method which will set multiplayer based on user input
+     */
+    public void setMultiplayer(boolean multiplayer){
+        this.multiplayer = multiplayer;
+    }
+
+    /**
+     * Call OutputWriter.printInstructions to display the boggle instructions to the user.
      */
     public void giveInstructions()
     {
-        System.out.println("The Boggle board contains a grid of letters that are randomly placed.");
-        System.out.println("We're both going to try to find words in this grid by joining the letters.");
-        System.out.println("You can form a word by connecting adjoining letters on the grid.");
-        System.out.println("Two letters adjoin if they are next to each other horizontally, ");
-        System.out.println("vertically, or diagonally. The words you find must be at least 4 letters long, ");
-        System.out.println("and you can't use a letter twice in any single word. Your points ");
-        System.out.println("will be based on word length: a 4-letter word is worth 1 point, 5-letter");
-        System.out.println("words earn 2 points, and so on. After you find as many words as you can,");
-        System.out.println("I will find all the remaining words.");
-        System.out.println("\nHit return when you're ready...");
+        this.writer.printInstructions();
     }
 
+    /**
+     * Action method which will set the dyslexia mode based on user input
+     */
     public void setDyslexiaMode(boolean dyslexiaMode){
         this.dyslexiaMode = dyslexiaMode;
     }
 
+    /**
+     * Action method which will set the board shape based on user input
+     */
     public void setBoardShape(String shape){
         if(shape.equalsIgnoreCase("R")){
             this.boardShape = "rectangle";
@@ -127,17 +168,23 @@ public class BoggleGame {
         }
     }
 
+    /**
+     * Action method which will set the board dimensions based on user input
+     */
     public void setBoardDimensions(int[] dimensions){
         this.boardDimensions = dimensions;
     }
 
+    /**
+     * Action method which will set the board difficulty based on user input
+     */
     public void setBoardDifficulty(String difficulty){
         if(difficulty.equalsIgnoreCase("E")){
-            this.boardShape = "easy";
+            this.difficulty = "easy";
         } else if(difficulty.equalsIgnoreCase("M")){
-            this.boardShape = "medium";
+            this.difficulty = "medium";
         } else if(difficulty.equalsIgnoreCase("H")){
-            this.boardShape = "hard";
+            this.difficulty = "hard";
         }
     }
 
@@ -149,7 +196,7 @@ public class BoggleGame {
     public void playGame() {
         int boardSize;
         while (true) {
-            reader.getGameSettings(this);
+            reader.getGameSettings();
 //            System.out.println("Enter 1 to play on a big (5x5) grid; 2 to play on a small (4x4) one:");
 //            String choiceGrid = scanner.nextLine();
 //

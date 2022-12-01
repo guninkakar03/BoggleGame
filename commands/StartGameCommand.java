@@ -3,9 +3,9 @@ package commands;
 import boggle.BoggleGame;
 
 /**
- * Concrete command to check that the current word in the receiver is a real word
+ * Concrete command to start the game
  */
-public class CheckWordCommand implements command{
+public class StartGameCommand implements command{
 
     /**
      * The receiver that this command will be acting on
@@ -13,20 +13,12 @@ public class CheckWordCommand implements command{
     BoggleGame receiver;
 
     /**
-     * The word that the user has inputted
-     */
-    String word;
-
-
-    /**
      * CheckWordCommand constructor
      *
      * @param receiver the receiver that this command will act on
-     * @param word the word to check if it's a valid word
      */
-    public CheckWordCommand(BoggleGame receiver, String word){
+    public StartGameCommand(BoggleGame receiver){
         this.receiver = receiver;
-        this.word = word;
     }
 
     /**
@@ -34,6 +26,6 @@ public class CheckWordCommand implements command{
      */
     @Override
     public void execute() {
-        receiver.checkCurrentWord(this.word);
+        receiver.startGame();
     }
 }
