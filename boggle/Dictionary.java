@@ -30,7 +30,7 @@ public class Dictionary {
         String line = "";
         int wordcount = 0;
         this.legalWords = new TreeSet<String>();
-        this.word_meaning = new HashMap<String, String>();
+
         try
         {
             BufferedReader br = new BufferedReader(new FileReader(filename));
@@ -61,10 +61,9 @@ public class Dictionary {
         //read in the file that has all the valid words
         String line = "";
         int wordcount = 0;
-
-
         this.legalWords = allWords;
-
+        // Initialising the HashMap
+        this.word_meaning = new HashMap<String, String>();
         //Start to read in the csv files with the word meanings
         List<String> csvList = new ArrayList<>();
         File csvFiles = new File("CSV files");
@@ -102,10 +101,10 @@ public class Dictionary {
 
                             String wordPart = line.substring(indexStart, index).toLowerCase();
                             String meaning_part = line.substring(line.indexOf(')') + 1, line.length() - indexStart).replace(",", "");
-                            String checked = word;
-                            if (wordPart.equals(word))
+                            //String checked = word;
+                            if (wordPart.equals(word.toLowerCase())){
                                 // Populating the dictionary with the word and its meaning.
-                                this.word_meaning.put(word, meaning_part);
+                                this.word_meaning.put(word, meaning_part);}
                             br.readLine();
 
                         }
