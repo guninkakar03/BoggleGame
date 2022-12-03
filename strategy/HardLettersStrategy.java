@@ -31,6 +31,8 @@ public class HardLettersStrategy implements generateLettersStrategy{
         String letters = "";
         int totalHardDice = (int)Math.ceil(numLetters * HARD_LETTER_RATIO);
         int totalVowelDice = (int)Math.ceil(numLetters * VOWEL_LETTER_RATIO);
+
+        //Populate boardDice with a certain amount of each dice, depending on the board size and ratio of that dice type
         for(int i = 0; i < totalHardDice; i++){
             boardDice[i] = new HardDie();
         }

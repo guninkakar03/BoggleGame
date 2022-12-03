@@ -30,6 +30,8 @@ public class EasyLettersStrategy implements generateLettersStrategy{
         String letters = "";
         int totalSDice = (int)Math.ceil(numLetters * S_LETTER_RATIO);
         int totalVowelDice = (int)Math.ceil(numLetters * VOWEL_LETTER_RATIO);
+
+        //Populate boardDice with a certain amount of each dice, depending on the board size and ratio of that dice type
         for(int i = 0; i < totalSDice; i++){
             boardDice[i] = new SDie();
         }
@@ -44,7 +46,7 @@ public class EasyLettersStrategy implements generateLettersStrategy{
         List<Die> diceList = Arrays.asList(boardDice);
         Collections.shuffle(diceList);
         diceList.toArray(boardDice);
-        
+
         for(Die d: boardDice){
             letters += d.toString();
         }

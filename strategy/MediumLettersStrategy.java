@@ -24,6 +24,8 @@ public class MediumLettersStrategy implements generateLettersStrategy{
         Die[] boardDice = new Die[numLetters];
         String letters = "";
         int totalVowelDice = (int)Math.ceil(numLetters * VOWEL_LETTER_RATIO);
+
+        //Populate boardDice with a certain amount of each dice, depending on the board size and ratio of that dice type
         for(int i = 0; i < totalVowelDice; i++){
             boardDice[i] = new VowelDie();
         }
