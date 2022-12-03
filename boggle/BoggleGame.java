@@ -2,6 +2,10 @@ package boggle;
 
 import boggleIO.InputReader;
 import boggleIO.OutputWriter;
+import strategy.EasyLettersStrategy;
+import strategy.HardLettersStrategy;
+import strategy.MediumLettersStrategy;
+import strategy.generateLettersStrategy;
 
 import java.util.*;
 
@@ -39,6 +43,11 @@ public class BoggleGame {
      * temporary variable to keep track of the difficulty of the game
      */
     public String difficulty;
+
+    /**
+     * temporary variable to keep track of which strategy is being used
+     */
+    public generateLettersStrategy strategy;
 
     /**
      * temporary variable to hold whether or not multiplayer is turned on
@@ -196,10 +205,13 @@ public class BoggleGame {
     public void setBoardDifficulty(String difficulty){
         if(difficulty.equalsIgnoreCase("E")){
             this.difficulty = "easy";
+            this.strategy = new EasyLettersStrategy();
         } else if(difficulty.equalsIgnoreCase("M")){
             this.difficulty = "medium";
+            this.strategy = new MediumLettersStrategy();
         } else if(difficulty.equalsIgnoreCase("H")){
             this.difficulty = "hard";
+            this.strategy = new HardLettersStrategy();
         }
     }
 
@@ -212,6 +224,8 @@ public class BoggleGame {
         int boardSize;
         while (true) {
             reader.getGameSettings();
+            String letters = this.strategy.execute(16);
+            System.out.println("BOARD LETTERS: " + letters);
 //            System.out.println("Enter 1 to play on a big (5x5) grid; 2 to play on a small (4x4) one:");
 //            String choiceGrid = scanner.nextLine();
 //
