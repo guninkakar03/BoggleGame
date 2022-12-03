@@ -7,7 +7,6 @@ import java.util.Set;
 
 public class GameStats {
 
-
     /**
      * The grid on which the Boggle Game is played
      */
@@ -129,8 +128,8 @@ public class GameStats {
         if (player2 instanceof ComputerPlayer){
             ArrayList<String> words_by_human_player = new ArrayList<>(player1.getPlayerWords());
             ArrayList<String> words_by_computer_player = new ArrayList<>(((ComputerPlayer) player2).getPlayerWords());
-            player1.score = doScoreCalculation(words_by_human_player);
-            player2.score = doScoreCalculation(words_by_computer_player);
+            player1.setScore(doScoreCalculation(words_by_human_player));
+            ((ComputerPlayer) player2).setScore(doScoreCalculation(words_by_computer_player));
         } else {
             Set<String> words_by_human_player1 = player1.getPlayerWords();
             ArrayList<String> array_words_by_human_player1 = new ArrayList<>(words_by_human_player1);
@@ -150,8 +149,8 @@ public class GameStats {
                     unique_words_to_player2.add(word);
                 }
             }
-            player1.score = doScoreCalculation(unique_words_to_player1);
-            player2.score = doScoreCalculation(unique_words_to_player2);
+            player1.setScore(doScoreCalculation(unique_words_to_player1));
+            ((HumanPlayer) player2).setScore(doScoreCalculation(unique_words_to_player2));
 
         }
 
