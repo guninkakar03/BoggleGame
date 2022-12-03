@@ -8,7 +8,7 @@ import java.util.Set;
  * This class keeps track of the player's information essential to the game
  *
  */
-public class Player {
+public class HumanPlayer {
 
     /**
      * set of words the player finds in a given round
