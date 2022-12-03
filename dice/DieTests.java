@@ -25,5 +25,35 @@ public class DieTests {
             assertTrue("LMAO".contains(specialDie.toString().toUpperCase()));
         }
     }
+
+    // Testing that the upface of a HardDie is a hard letter to make words out of (ZJKXQV)
+    @Test
+    void rollHardDie() {
+        HardDie hd = new HardDie();
+        for(int i = 0; i < 100; i++){
+            hd.roll();
+            assertTrue("ZJKXQV".contains(hd.toString().toUpperCase()));
+        }
+    }
+
+    // Testing that the upface of a VowelDie is a vowel (AEIOUY)
+    @Test
+    void rollVowelDie() {
+        VowelDie vd = new VowelDie();
+        for(int i = 0; i < 100; i++){
+            vd.roll();
+            assertTrue("AEIOUY".contains(vd.toString().toUpperCase()));
+        }
+    }
+
+    // Testing that the upface of a VowelDie is an S
+    @Test
+    void rollSDie() {
+        SDie sd = new SDie();
+        for(int i = 0; i < 100; i++){
+            sd.roll();
+            assertTrue("S".contains(sd.toString().toUpperCase()));
+        }
+    }
 }
 
