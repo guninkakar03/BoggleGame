@@ -195,6 +195,9 @@ public class InputReader {
                 case "-shape":
                     this.getBoardShape();
                     break;
+                case "-multiplayer":
+                    this.getMultiplayer();
+                    break;
                 case "-difficulty":
                     this.getBoardDifficulty();
                     break;
