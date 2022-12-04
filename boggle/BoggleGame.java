@@ -224,7 +224,15 @@ public class BoggleGame {
         int boardSize;
         while (true) {
             reader.getGameSettings();
-            String letters = this.strategy.execute(16, this.dyslexiaMode);
+            int numLetters = 0;
+            if(this.boardShape == "diamond"){
+                numLetters = 13;
+            } else if (this.boardShape == "triangle"){
+                numLetters = 9;
+            } else { // board is rectangular
+                numLetters = this.boardDimensions[0] * this.boardDimensions[1];
+            }
+            String letters = this.strategy.execute(numLetters, this.dyslexiaMode);
             System.out.println("BOARD LETTERS: " + letters);
 //            System.out.println("Enter 1 to play on a big (5x5) grid; 2 to play on a small (4x4) one:");
 //            String choiceGrid = scanner.nextLine();
