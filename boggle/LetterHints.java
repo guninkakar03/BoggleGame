@@ -35,7 +35,7 @@ public class LetterHints extends Hints {
             res+="_ ";
         }
         res+=word.charAt(len-1);
-        System.out.println("Your Hint is:"+ res+"   "+ len);
+        System.out.println("Your Hint is:"+ res+"   "+ "Of length "+len);
         return res;
     }
 }
