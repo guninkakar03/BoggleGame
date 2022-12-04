@@ -1,7 +1,5 @@
 package boggle;
 
-import java.util.HashMap;
-
 /**
  * Class to implement the Meaning Hint which will give the client the meaning of a word from board as a Hint.
  */
@@ -9,16 +7,19 @@ public class MeaningHints extends Hints{
     /** MeaningHints Constructor, inheriting the Hints constructor
      * ----------------------
      * @param dict  The Dictionary of the Game
-     * @param allWords Hashmap containing the Words and its respective position of the grid.
+     *
      */
-    public MeaningHints(Dictionary dict, HashMap<String,Position> allWords){
-        super(dict,allWords);
+    public MeaningHints(Dictionary dict){
+        super(dict);
     }
     /**
      * updates the score of the player asking for MeaningHints
+     * by reducing a small amount from its score.(20 percent)
      *
+     * @return Score decreased by taking this type of hint.
      */
-    public void updateScore(){
+    public double updateScore(){
+        return -0.20;
     }
     /**
      * Provides the meaning of the word of the grid using the adapter dictionary.

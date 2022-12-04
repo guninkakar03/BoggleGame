@@ -1,7 +1,5 @@
 package boggle;
 
-import java.util.HashMap;
-
 /**
  * Class to implement the LetterHint which will give the client the first, last letter of a word with the length
  * from board as a Hint.
@@ -10,16 +8,17 @@ public class LetterHints extends Hints {
     /** MeaningHints Constructor, inheriting the Hints constructor
      * ----------------------
      * @param dict  The Dictionary of the Game
-     * @param allWords Hashmap containing the Words and its respective position of the grid.
+     *
      */
-    public LetterHints(Dictionary dict, HashMap<String,Position> allWords){
-        super(dict,allWords);
+    public LetterHints(Dictionary dict){
+        super(dict);
     }
     /**
      * updates the score of the player asking for MeaningHints
-     *
+     * @return Score decreased by taking this type of hint.
      */
-    public void updateScore(){
+    public double updateScore(){
+        return -0.15;
     }
     /**
      * Provides the first and last letter with its length as a string representation to the player.
