@@ -14,19 +14,12 @@ public class LetterHints extends Hints {
         super(dict);
     }
     /**
-     * updates the score of the player asking for MeaningHints
-     * @return Score decreased by taking this type of hint.
-     */
-    public double updateScore(){
-        return -0.15;
-    }
-    /**
      * Provides the first and last letter with its length as a string representation to the player.
      * @param word random word in the grid from dictionary.
      * @return the first, last letter with its length of the word
      *
      */
-    public String getLetterMeaning(String word){
+    public String getHint(String word){
         int len= word.length();
         int numberofDashes=len-2;
         String res="";

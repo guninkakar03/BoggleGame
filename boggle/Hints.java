@@ -11,11 +11,6 @@ public abstract class Hints {
     public Dictionary dict;
 
     /**
-     * Hashmap of findAllWords containing all the words and its respective positions in the grid.
-     */
-
-
-    /**
      * Hints Constructor
      * ----------------------
      *
@@ -25,10 +20,7 @@ public abstract class Hints {
         this.dict=dict;
     }
     /**
-     * updates the score of the player asking for hints
+     * Abstract Method returning the specific hind
      */
-    public double updateScore(){
-        // does nothing
-        throw new UnsupportedOperationException("not supported");
-    }
+    abstract String getHint(String word);
 }
