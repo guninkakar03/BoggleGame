@@ -1,5 +1,6 @@
 package boggle;
 
+
 import java.util.*;
 
 public class HumanPlayer extends Player {
@@ -133,4 +134,5 @@ public class HumanPlayer extends Player {
     public void resetScore(){
         this.score = 0;
     }
+
 }

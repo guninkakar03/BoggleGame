@@ -3,12 +3,11 @@ package dice;
 /**
  * Hard Die class to roll letters that are hard to make words with
  */
-public class HardDie extends Die{
-
+public class SDie extends Die{
     /**
-     * HardDie constructor
+     * SDie constructor
      */
-    public HardDie(){
-        super("ZJKXQV");
+    public SDie(){
+        super("S");
     }
 }

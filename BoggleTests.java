@@ -19,6 +19,7 @@
 //public class BoggleTests {
 //
 //    //BoggleGame  Test
+
 //    @Test
 //    void findAllWords_small() throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
 //        BoggleGame game = new BoggleGame();
@@ -62,8 +63,10 @@
 //            }
 //        }
 //    }
+
 //
 //    //BoggleStats Test
+
 //    @Test
 //    void endRoundTest() {
 //        BoggleStats stats = new BoggleStats();
@@ -72,5 +75,8 @@
 //        stats.endRound();
 //        assertEquals(3, stats.getRound());
 //    }
+
 //
 //}
+
+}

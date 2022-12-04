@@ -1,5 +1,7 @@
 package boggle;
 
+import dice.Die;
+
 /**
  * The BoggleGrid class for the first Assignment in CSC207, Fall 2022
  * The BoggleGrid represents the grid on which we play Boggle 
@@ -11,9 +13,9 @@ public class BoggleGrid {
      */  
     private int size;
     /**
-     * characters assigned to grid
+     * dice assigned to grid
      */      
-    private char[][] board;
+    private Die[][] board;
 
     /* BoggleGrid constructor
      * ----------------------
@@ -21,18 +23,18 @@ public class BoggleGrid {
      */
     public BoggleGrid(int size) {
         this.size = size;
-        this.board = new char[size][size];
+        this.board = new Die[size][size];
     }
 
     /* 
-     * Assigns a letter in the string of letters to each grid position
+     * Assigns a Die in the string of letters to each grid position
      * Letters should be assigned left to right, top to bottom
      *
      * @param letters a string of letters, one for each grid position.
      */
-    public void initializeBoard(String letters) {
-        for(int i=0; i<letters.length(); i++){
-            this.board[i/this.size][i%this.size] = letters.charAt(i);
+    public void initializeBoard() {
+        for(int i=0; i<size*size; i++){
+            this.board[i/this.size][i%this.size] = new Die();
         }
     }
 
@@ -47,7 +49,7 @@ public class BoggleGrid {
         String boardString = "";
         for(int row = 0; row < this.size; row++){
             for(int col = 0; col < this.size; col++){
-                boardString += this.board[row][col] + " ";
+                boardString += this.board[row][col].toString() + " ";
             }
             boardString += "\n";
         }
@@ -72,7 +74,7 @@ public class BoggleGrid {
      * @return char the character at a given grid position
      */
     public char getCharAt(int row, int col) {
-        return this.board[row][col];
+        return this.board[row][col].toString().charAt(0);
     }
 
     public abstract static class Grid {

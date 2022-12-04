@@ -1,19 +1,14 @@
 package dice;
 
 /**
- * Concrete die which is composed of vowel letters
+ * Vowel Die class to roll vowels
  */
 public class VowelDie extends Die{
 
     /**
-     * A string of vowel letters to initialize the die with
-     */
-    private final String VOWEL_LETTERS = "AEIOUY";
-
-    /**
      * VowelDie constructor
      */
-    public VowelDie() {
-        this.letters = VOWEL_LETTERS;
+    public VowelDie(){
+        super("AEIOUY");
     }
 }
