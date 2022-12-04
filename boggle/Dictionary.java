@@ -30,7 +30,7 @@ public class Dictionary {
         String line = "";
         int wordcount = 0;
         this.legalWords = new TreeSet<String>();
-        this.word_meaning = new HashMap<String, String>();
+
         try
         {
             BufferedReader br = new BufferedReader(new FileReader(filename));
@@ -61,10 +61,9 @@ public class Dictionary {
         //read in the file that has all the valid words
         String line = "";
         int wordcount = 0;
-
-
         this.legalWords = allWords;
-
+        // Initialising the HashMap
+        this.word_meaning = new HashMap<String, String>();
         //Start to read in the csv files with the word meanings
         List<String> csvList = new ArrayList<>();
         File csvFiles = new File("CSV files");
@@ -85,13 +84,12 @@ public class Dictionary {
         String splitBy = ",";
         try {
             for (String word: this.word_meaning.keySet()) {
-
                 for (int i = 0; i < csvList.size(); i++) {
                         //String first_letter=(String) csvList.get(i).charAt(0)
                     if(Character.toLowerCase(csvList.get(i).charAt(0))==word.charAt(0)){
                         //parsing a CSV file into BufferedReader class constructor
                         BufferedReader br = new BufferedReader(new FileReader("CSV Files/"+csvList.get(i)));
-                        while ((line = br.readLine()) != null) {   //returns a Boolean value
+                        while ((line = br.readLine()) != null) {//returns a Boolean value
                             // Separating the word and the meaning part to populate the dictionary
                             int indexStart = 0;
                             if (line.contains("\"")) {
@@ -99,15 +97,16 @@ public class Dictionary {
                                 indexStart += 1;
                             }
                             int index = line.indexOf(" ");
-
                             String wordPart = line.substring(indexStart, index).toLowerCase();
+                            if(wordPart.length()<4)
+                                br.readLine();
+                            else{
                             String meaning_part = line.substring(line.indexOf(')') + 1, line.length() - indexStart).replace(",", "");
-                            String checked = word;
-                            if (wordPart.equals(word))
+                            //String checked = word;
+                            if (wordPart.equals(word.toLowerCase())){
                                 // Populating the dictionary with the word and its meaning.
-                                this.word_meaning.put(word, meaning_part);
-                            br.readLine();
-
+                                this.word_meaning.put(word, meaning_part);}
+                            br.readLine();}
                         }
 
                     }
