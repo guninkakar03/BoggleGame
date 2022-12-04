@@ -23,9 +23,12 @@ public class EasyLettersStrategy implements generateLettersStrategy{
 
     /**
      * generate a string of letters that has a certain ratio of the letters to be difficult letters to make words with.
+     *
+     * @param numLetters the number of letters that should be returned (length of the String)
+     * @param  dyslexiaAid whether or not dyslexia mode is turned on
      */
     @Override
-    public String execute(int numLetters) {
+    public String execute(int numLetters, boolean dyslexiaAid) {
         Die[] boardDice = new Die[numLetters];
         String letters = "";
         int totalSDice = (int)Math.ceil(numLetters * S_LETTER_RATIO);
@@ -50,6 +53,16 @@ public class EasyLettersStrategy implements generateLettersStrategy{
         for(Die d: boardDice){
             letters += d.toString();
         }
+
+        // if user turned on the aid for dyslexia, make letters lowercase, and replace letters that are easily mixed
+        if(dyslexiaAid){
+            letters = letters.toLowerCase();
+            letters.replace('b', 'd');
+            letters.replace('z', 's');
+            letters.replace('q', 'p');
+            letters.replace('w', 'm');
+        }
+
         return letters;
     }
 }
