@@ -2,6 +2,7 @@ package boggle;
 
 import boggleIO.InputReader;
 import boggleIO.OutputWriter;
+import commands.DisplayBoardCommand;
 import strategy.EasyLettersStrategy;
 import strategy.HardLettersStrategy;
 import strategy.MediumLettersStrategy;
@@ -10,10 +11,15 @@ import strategy.generateLettersStrategy;
 import java.util.*;
 
 /**
- * The BoggleGame class for the first Assignment in CSC207, Fall 2022
+ * The BoggleGame class for the Game Boggle
  */
 public class BoggleGame {
 
+
+    /**
+     * The Single BoggleGame instance that will be called each time
+     */
+    private static final BoggleGame INSTANCE = new BoggleGame();
     /**
      * scanner used to interact with the user via console
      */ 
@@ -62,35 +68,45 @@ public class BoggleGame {
     /**
      * stores the current board of dice
      */
-    public BoggleGrid board;
+    public Grid board;
 
     /**
      * stores game statistics
      */ 
     private BoggleStats gameStats;
 
-    /**
-     * dice used to randomize letter assignments for a small grid
-     */ 
-    private final String[] dice_small_grid= //dice specifications, for small and large grids
-            {"AAEEGN", "ABBJOO", "ACHOPS", "AFFKPS", "AOOTTW", "CIMOTU", "DEILRX", "DELRVY",
-                    "DISTTY", "EEGHNW", "EEINSU", "EHRTVW", "EIOSST", "ELRTTY", "HIMNQU", "HLNNRZ"};
-    /**
-     * dice used to randomize letter assignments for a big grid
-     */ 
-    private final String[] dice_big_grid =
-            {"AAAFRS", "AAEEEE", "AAFIRS", "ADENNN", "AEEEEM", "AEEGMU", "AEGMNN", "AFIRSY",
-                    "BJKQXZ", "CCNSTW", "CEIILT", "CEILPT", "CEIPST", "DDLNOR", "DDHNOT", "DHHLOR",
-                    "DHLNOR", "EIIITT", "EMOTTT", "ENSSSU", "FIPRSY", "GORRVW", "HIPRRY", "NOOTUW", "OOOTTU"};
+//    /**
+//     * dice used to randomize letter assignments for a small grid
+//     */
+//    private final String[] dice_small_grid= //dice specifications, for small and large grids
+//            {"AAEEGN", "ABBJOO", "ACHOPS", "AFFKPS", "AOOTTW", "CIMOTU", "DEILRX", "DELRVY",
+//                    "DISTTY", "EEGHNW", "EEINSU", "EHRTVW", "EIOSST", "ELRTTY", "HIMNQU", "HLNNRZ"};
+//    /**
+//     * dice used to randomize letter assignments for a big grid
+//     */
+//    private final String[] dice_big_grid =
+//            {"AAAFRS", "AAEEEE", "AAFIRS", "ADENNN", "AEEEEM", "AEEGMU", "AEGMNN", "AFIRSY",
+//                    "BJKQXZ", "CCNSTW", "CEIILT", "CEILPT", "CEIPST", "DDLNOR", "DDHNOT", "DHHLOR",
+//                    "DHLNOR", "EIIITT", "EMOTTT", "ENSSSU", "FIPRSY", "GORRVW", "HIPRRY", "NOOTUW", "OOOTTU"};
+
+    public HumanPlayer human;
+
+    public HumanPlayer human2;
+
+    public ComputerPlayer computer;
 
     /**
      * BoggleGame constructor
      */
-    public BoggleGame() {
+    private BoggleGame() {
+
         this.scanner = new Scanner(System.in);
         this.reader = new InputReader(this);
         this.writer = new OutputWriter();
         this.gameStats = new BoggleStats();
+    }
+    public static BoggleGame getInstance(){
+        return INSTANCE;
     }
 
     /**
@@ -128,27 +144,71 @@ public class BoggleGame {
         throw new UnsupportedOperationException();
     }
     
-    public void playRound(int size, String letters){
-        //step 1. initialize the grid
-        BoggleGrid grid = new BoggleGrid(size);
-//        grid.initalizeBoard(letters);
-        //step 2. initialize the dictionary of legal words
-        Dictionary boggleDict = new Dictionary("wordlist.txt"); //you may have to change the path to the wordlist, depending on where you place it.
-        //step 3. find all legal words on the board, given the dictionary and grid arrangement.
-        Map<String, ArrayList<Position>> allWords = new HashMap<String, ArrayList<Position>>();
-        findAllWords(allWords, boggleDict, grid);
-        //step 4. allow the user to try to find some words on the grid
-        humanMove(grid, allWords);
-        //step 5. allow the computer to identify remaining words
-        computerMove(allWords);
-    }
+//    public void playRound(int size, String letters){
+//        //step 1. initialize the grid
+//        //BoggleGrid grid = new BoggleGrid(size);
+////        grid.initalizeBoard(letters);
+//        //step 2. initialize the dictionary of legal words
+//
+//
+//        Dictionary boggleDict = new Dictionary("wordlist.txt"); //you may have to change the path to the wordlist, depending on where you place it.
+//        //step 3. find all legal words on the board, given the dictionary and grid arrangement.
+//
+//
+//        Map<String, ArrayList<Position>> allWords = new HashMap<String, ArrayList<Position>>();
+//
+//
+//        findAllWords(allWords, boggleDict, grid);
+////        //step 4. allow the user to try to find some words on the grid
+////        humanMove(grid, allWords);
+////        //step 5. allow the computer to identify remaining words
+////        computerMove(allWords);
+//    }
 
     /**
      * Action method which will start the boggle game
      */
     public void startGame(){
-        throw new UnsupportedOperationException();
+
+        //Initialize the grid based on what type of grid the user chose
+        if(boardShape.equals("rectangle")){
+            this.board  = new RectangleGrid(boardDimensions[0], boardDimensions[1]);
+        } else if (boardShape.equals("diamond")) {
+            this.board = new DiamondGrid(boardDimensions[0], boardDimensions[1]);
+        } else{
+            this.board = new TriangleGrid(boardDimensions[0], boardDimensions[1]);
+        }
+
+        //Step 2: Initalize the Dictionary of valid words
+        Dictionary dictionary = new Dictionary("wordlist.txt");
+
+        //Step 3: Instantiate new FindAllWords class
+        //FindAllWords findAllWords = new FindAllWords(this.board);
+        Map<String, ArrayList<Position>> allWords = new HashMap<>();
+
+        //Step 4: instantiate the human(s) and computer(if required)
+        if(multiplayer){ //play multiplayer game
+            this.human = new HumanPlayer(allWords,this.board);
+            this.human2 = new HumanPlayer(allWords,this.board);
+
+            this.human.makeMove();
+            this.human2.makeMove();
+
+
+
+        }else{//play single player game
+            this.human = new HumanPlayer(allWords,this.board);
+            this.computer = new ComputerPlayer(allWords, this.human);
+
+            this.human.makeMove();
+            this.computer.makeMove();
+        }
+
+
+
     }
+
+
 
     /**
      * Action method which will display a hint for the player

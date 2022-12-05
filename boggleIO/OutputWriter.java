@@ -1,6 +1,7 @@
 package boggleIO;
 
 import boggle.BoggleGrid;
+import boggle.Grid;
 
 public class OutputWriter {
 
@@ -52,7 +53,7 @@ public class OutputWriter {
     /**
      * Print the game board
      */
-    public void printGameBoard(BoggleGrid board){
+    public void printGameBoard(Grid board){
         // loop through each die in the board and print it
     }
 }

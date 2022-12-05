@@ -1,11 +1,7 @@
 package boggle;
 
-import boggle.BoggleGrid;
-import boggle.Position;
-
 import java.util.ArrayList;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * The findAllWords interface that FindAllWordsStrategy will implement

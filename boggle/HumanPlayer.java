@@ -5,6 +5,9 @@ import java.util.*;
 
 public class HumanPlayer extends Player {
 
+
+    //***Human ids or names???*****************
+
     /**
      * The board on which boggle game is played.
      */
@@ -56,7 +59,7 @@ public class HumanPlayer extends Player {
         boolean keepPlaying = true;
         while(keepPlaying) {
             String word = "";
-            System.out.println(board);
+            System.out.println(board); //change to the display Board Command
             System.out.println("Enter Word:");
             word = scanner.nextLine();
             if (word == ""){
