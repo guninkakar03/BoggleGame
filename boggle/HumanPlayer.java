@@ -150,16 +150,20 @@ public class HumanPlayer extends Player {
      * This method generates the specific type of hint asked by the player.
      *@return The hint for the player.
      */
-    public String askHints() {
+    public void askHints() {
         if (this.hintcounter > 5) {
             System.out.println("Sorry you are out of hints, You cannot take anymore in this round");
-            return null;
+            return;
         }
         Scanner sc = new Scanner(System.in);
         String hint;
         System.out.println("What type of hint do you want? Press \"LH\" for Letter Hints and \"MH\" for Meaning Hint");
         hint = sc.nextLine().toLowerCase();
-        ArrayList<String> words = new ArrayList<>(this.allWords.keySet());
+        Map<String,ArrayList<Position>> lowerCaseMap = new HashMap<>(this.allWords.size());
+        for (Map.Entry<String, ArrayList<Position>> entry : this.allWords.entrySet()) {
+            lowerCaseMap.put(entry.getKey().toLowerCase(), entry.getValue());
+        }
+        ArrayList<String> words = new ArrayList<>(lowerCaseMap.keySet());
         TreeSet<String> setofWords = new TreeSet<>(words);
         Random r = new Random();
         if (hint.equals("lh")) {
@@ -170,7 +174,8 @@ public class HumanPlayer extends Player {
                 randomWordFromGrid = words.get(r.nextInt(words.size()));
             } while (playerWords.contains(randomWordFromGrid));
             LetterHints letterHint = new LetterHints(new Dictionary(setofWords));
-            return letterHint.getHint(randomWordFromGrid);
+            letterHint.getHint(randomWordFromGrid);
+            return;
         } else if (hint.equals("mh")) {
             this.hintcounter += 1;
             this.score -= 1;
@@ -179,15 +184,16 @@ public class HumanPlayer extends Player {
             while (true) {
                 randomWordFromGrid = words.get(r.nextInt(words.size()));
                 if (!playerWords.contains(randomWordFromGrid)) {
-                    if (meaningHint.getHint(randomWordFromGrid) != null) {
+                    if (!meaningHint.getHint(randomWordFromGrid).equals("")) {
                         break;
                     }
                 }
             }
-            return meaningHint.getHint(randomWordFromGrid);
+            System.out.println("Your meaning hint is: "+meaningHint.getHint(randomWordFromGrid));
+            //meaningHint.getHint(randomWordFromGrid);
+            return;
         }
         System.out.println("Invalid Input");
-        return null;
     }
 
 }

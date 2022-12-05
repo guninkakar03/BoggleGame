@@ -20,7 +20,7 @@ public class MeaningHints extends Hints{
      */
     public String getHint(String word){
       String res= this.dict.get_word_meanings().get(word);
-        System.out.println("Your Meaning hint is:"+ res);
+        //System.out.println("Your Meaning hint is:"+ res);
         return res;
     }
 }
