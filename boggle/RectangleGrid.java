@@ -27,6 +27,7 @@ public class RectangleGrid extends Grid {
      *
      * @param letters a string of letters, one for each grid position.
      */
+    @Override
     public void initializeBoard(String letters) {
         int index = 0;
         for (int i = 0; i < this.height; i++) {

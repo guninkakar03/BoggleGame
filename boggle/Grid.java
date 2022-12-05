@@ -22,6 +22,7 @@ public abstract class Grid {
 
     abstract ArrayList<Position> getNeighbours(int row, int col);
 
+    abstract void initializeBoard(String letters);
 
     /*
      * @return int the number of rows on the board

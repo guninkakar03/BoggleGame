@@ -27,6 +27,7 @@ public class DiamondGrid extends Grid{
      *
      * @param letters a string of letters, one for each grid position.
      */
+    @Override
     public void initializeBoard(String letters) {
 
         int index = 0;  // helps keep track of which char in the letter to choose
