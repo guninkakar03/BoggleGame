@@ -159,18 +159,18 @@ public class InputReader {
     private void getDyslexiaMode(){
         // prompt the user to input whether or not dyslexia mode should be enabled
         System.out.println("Would you like to play with spaced letters/less similar letters? (helpful for those with dyslexia)");
-        System.out.println("Type y for yes, or n for no");
+        System.out.println("Type Y for yes, or N for no");
         String input = this.scanner.nextLine();
 
         // keep prompting the user until the input is valid
-        while(!(input.equalsIgnoreCase("y") || input.equalsIgnoreCase("n"))){
+        while(!(input.equalsIgnoreCase("Y") || input.equalsIgnoreCase("N"))){
             System.out.println("Invalid input");
-            System.out.println("Type y to enable dyslexia mode, or n to disable dyslexia mode");
+            System.out.println("Type Y to enable dyslexia mode, or N to disable dyslexia mode");
             input = this.scanner.nextLine();
         }
 
         // once the user inputs a valid string, set the command and execute it
-        this.inputCommand = new ChangeDyslexiaModeCommand(this.receiver, input.equalsIgnoreCase("y"));
+        this.inputCommand = new ChangeDyslexiaModeCommand(this.receiver, input.equalsIgnoreCase("Y"));
         this.inputCommand.execute();
     }
 
@@ -184,7 +184,7 @@ public class InputReader {
         while(!startCommandCalled){
             this.inputCommand = new DisplayGameSettingsCommand(this.receiver);
             this.inputCommand.execute();
-            System.out.println("Please input a command (type -help for a list of commands, or start to start)");
+            System.out.println("Please input a command (type -help for a list of commands, or write -start to start the game)");
             String input = this.scanner.nextLine();
             // Check which command has been inputted
             switch (input.toLowerCase()){
@@ -205,10 +205,11 @@ public class InputReader {
                     this.getDyslexiaMode();
                     break;
                 case "-start":
+                    System.out.println("You inputted the -start");
                     startCommandCalled = true;
                     this.inputCommand = new StartGameCommand(this.receiver);
                     this.inputCommand.execute();
-                    System.out.println("You inputted the -start");
+
                     break;
                 default:
                     System.out.println("Invalid command");
