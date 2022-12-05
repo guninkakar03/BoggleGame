@@ -12,6 +12,8 @@ public class OutputWriter {
         System.out.println("\t-help : display a list of possible commands (this)");
         System.out.println("\t-shape : change the shape of the boggle board you wish to play");
         System.out.println("\t-dyslexia : toggle dyslexia mode");
+        System.out.println("\t-difficulty : change the difficulty of the board");
+        System.out.println("\t-multiplayer : change between single player or multiplayer (2 players)");
         System.out.println("\t-start : start the boggle game with the current settings");
     }
 
