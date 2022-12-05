@@ -43,6 +43,7 @@ public class HumanPlayer extends Player {
         this.score = 0;
         this.allWords = allWords;
         this.board = board;
+        this.scanner = new Scanner(System.in);
     }
 
 
@@ -85,6 +86,7 @@ public class HumanPlayer extends Player {
      */
     @Override
     public void addWord(String word){
+        word = word.toUpperCase();
         if (playerWords.contains(word)){
             System.out.println("You have already guesses this word!!");
         } else if (allWords.containsKey(word)){
@@ -93,7 +95,6 @@ public class HumanPlayer extends Player {
         } else {
             System.out.println("Bad guess :/ try again");
         }
-
     }
 
 

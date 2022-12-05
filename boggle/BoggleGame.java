@@ -77,6 +77,8 @@ public class BoggleGame {
 
     public ComputerPlayer computer;
 
+    public findAllWords findAllWords;
+
     /**
      * BoggleGame constructor
      */
@@ -84,6 +86,7 @@ public class BoggleGame {
         this.reader = new InputReader(this);
         this.writer = new OutputWriter();
         this.gameStats = new BoggleStats();
+
     }
 
     public static BoggleGame getInstance(){
@@ -145,12 +148,17 @@ public class BoggleGame {
      */
     public void startGame(){
 
+
+
         //Step 2: Initalize the Dictionary of valid words
         Dictionary dictionary = new Dictionary("wordlist.txt");
 
+        findAllWords findAllWords1 = new findAllWords(board,dictionary);
+        findAllWords1.findWords();
         //Step 3: Instantiate new FindAllWords class
         //FindAllWords findAllWords = new FindAllWords(this.board);
-        Map<String, ArrayList<Position>> allWords = new HashMap<>();
+        Map<String, ArrayList<Position>> allWords = findAllWords1.allWords;
+        System.out.println(allWords.keySet());
 
         //Step 4: instantiate the human(s) and computer(if required)
         if(multiplayer){ //play multiplayer game
@@ -168,6 +176,7 @@ public class BoggleGame {
 
             this.human.makeMove();
             this.computer.makeMove();
+            this.gameStats.endRound();
         }
 
     }
@@ -261,11 +270,12 @@ public class BoggleGame {
             if (boardShape.equals("rectangle")) {
                 this.board = new RectangleGrid(boardDimensions[0], boardDimensions[1]);
             } else if (boardShape.equals("diamond")) {
-                this.board = new DiamondGrid(boardDimensions[0], boardDimensions[1]);
+                this.board = new DiamondGrid(5, 5);
             } else {
-                this.board = new TriangleGrid(boardDimensions[0], boardDimensions[1]);
+                this.board = new TriangleGrid(5, 5);
             }
             this.board.initializeBoard(letters);
+            startGame();
 
         }
     }

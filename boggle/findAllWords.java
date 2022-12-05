@@ -50,7 +50,7 @@ public class findAllWords {
      * @param boggleDict A dictionary of legal words
      * @param boggleGrid A boggle grid, with a letter at each position on the grid
      */
-    private void findWords() {
+    public void findWords() {
 //        int dimensions = grid.numRows();//holds the dimensions of grid
         int num_rows = grid.numRows();
         int num_cols = grid.numCols();
