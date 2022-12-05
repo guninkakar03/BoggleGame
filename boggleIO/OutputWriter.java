@@ -1,8 +1,5 @@
 package boggleIO;
 
-import boggle.BoggleGrid;
-import boggle.Grid;
-
 public class OutputWriter {
 
     /**
