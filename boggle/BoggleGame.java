@@ -105,20 +105,6 @@ public class BoggleGame {
     public void printSettings(){
         this.writer.printGameSettings(this.boardShape, this.difficulty, this.boardDimensions, this.dyslexiaMode);
     }
-
-    /**
-     * Action method which will check if the given word is a valid word
-     */
-    public void checkCurrentWord(String word){
-        throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Action method which will end the players turn
-     */
-    public void endTurn(){
-        throw new UnsupportedOperationException();
-    }
     
 //    public void playRound(int size, String letters){
 //        //step 1. initialize the grid
@@ -139,8 +125,6 @@ public class BoggleGame {
      * Action method which will start the boggle game
      */
     public void startGame(){
-
-
 
         //Step 2: Initalize the Dictionary of valid words
         Dictionary dictionary = new Dictionary("wordlist.txt");
