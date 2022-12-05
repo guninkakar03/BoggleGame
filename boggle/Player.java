@@ -27,10 +27,7 @@ public abstract class Player {
      * All the possible combination of words present on the board.
      */
     public Map<String, ArrayList<Position>> allWords;
-    /**
-     * Number of hints the player has taken.
-     */
-    private int hintcounter;
+
     /**
      * Dictionary to generate hint
      */
@@ -38,7 +35,6 @@ public abstract class Player {
 
     public Player(Map<String, ArrayList<Position>> allWords) {
         this.allWords = allWords;
-        this.hintcounter = 0;
     }
 
     /*
@@ -103,49 +99,7 @@ public abstract class Player {
     public void resetScore() {
         this.score = 0;
     }
-    /*
-     * This method generates the specific type of hint asked by the player.
-     *@return The hint for the player.
-     */
-    public String askHints() {
-        if (this.hintcounter > 5) {
-            System.out.println("Sorry you are out of hints, You cannot take anymore in this round");
-            return null;
-        }
-        Scanner sc = new Scanner(System.in);
-        String hint;
-        System.out.println("What type of hint do you want? Press \"LH\" for Letter Hints and \"MH\" for Meaning Hint");
-        hint = sc.nextLine().toLowerCase();
-        ArrayList<String> words = new ArrayList<>(this.allWords.keySet());
-        TreeSet<String> setofWords = new TreeSet<>(words);
-        Random r = new Random();
-        if (hint.equals("lh")) {
-            this.hintcounter += 1;
-            this.score -= 1;
-            String randomWordFromGrid;
-            do {
-                randomWordFromGrid = words.get(r.nextInt(words.size()));
-            } while (playerWords.contains(randomWordFromGrid));
-            LetterHints letterHint = new LetterHints(new Dictionary(setofWords));
-            return letterHint.getHint(randomWordFromGrid);
-        } else if (hint.equals("mh")) {
-            this.hintcounter += 1;
-            this.score -= 1;
-            MeaningHints meaningHint = new MeaningHints(new Dictionary(setofWords));
-            String randomWordFromGrid;
-            while (true) {
-                randomWordFromGrid = words.get(r.nextInt(words.size()));
-                if (!playerWords.contains(randomWordFromGrid)) {
-                    if (meaningHint.getHint(randomWordFromGrid) != null) {
-                        break;
-                    }
-                }
-            }
-            return meaningHint.getHint(randomWordFromGrid);
-        }
-        System.out.println("Invalid Input");
-        return null;
-    }
+
 }
 
 
