@@ -10,12 +10,12 @@ public class OutputWriter {
      */
     public void printCommands(){
         System.out.println("Valid Commands:");
-        System.out.println("\t-help : display a list of possible commands (this)");
-        System.out.println("\t-shape : change the shape of the boggle board you wish to play");
-        System.out.println("\t-dyslexia : toggle dyslexia mode");
-        System.out.println("\t-difficulty : change the difficulty of the board");
-        System.out.println("\t-multiplayer : change between single player or multiplayer (2 players)");
-        System.out.println("\t-start : start the boggle game with the current settings");
+        System.out.println("\t-help (-h): display a list of possible commands (this)");
+        System.out.println("\t-shape (-sh): change the shape of the boggle board you wish to play");
+        System.out.println("\t-dyslexia (-dys): toggle dyslexia mode");
+        System.out.println("\t-difficulty (-diff): change the difficulty of the board");
+        System.out.println("\t-multiplayer (-m): change between single player or multiplayer (2 players)");
+        System.out.println("\t-start (-s): start the boggle game with the current settings");
     }
 
     /**
@@ -48,12 +48,5 @@ public class OutputWriter {
         } else {
             System.out.println("\tDyslexia mode is OFF");
         }
-    }
-
-    /**
-     * Print the game board
-     */
-    public void printGameBoard(Grid board){
-        // loop through each die in the board and print it
     }
 }

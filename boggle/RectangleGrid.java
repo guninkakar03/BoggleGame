@@ -12,12 +12,16 @@ public class RectangleGrid extends Grid {
     // height of the Boggle Board
     private int height;
 
+    // boolean of whether or not letters in board should be spaced
+    private boolean dyslexiaMode;
+
     // 2D array representation of the Boggle Board
     private char[][] board;
 
-    public RectangleGrid(int width, int height) {
+    public RectangleGrid(int width, int height, boolean dyslexiaMode) {
         this.width = width;
         this.height = height;
+        this.dyslexiaMode = dyslexiaMode;
         this.board = new char[height][width];
     }
 
@@ -100,8 +104,14 @@ public class RectangleGrid extends Grid {
         for(int row = 0; row < this.height; row++){
             for(int col = 0; col < this.width; col++){
                 boardString += this.board[row][col] + " ";
+                if(this.dyslexiaMode){
+                    boardString += "   ";
+                }
             }
             boardString += "\n";
+            if(this.dyslexiaMode){
+                boardString += "\n";
+            }
         }
         return boardString;
     }

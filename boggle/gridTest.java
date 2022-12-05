@@ -24,7 +24,7 @@ public class gridTest {
     @Test
     void test_add_spaces(){
         // checks for cases when space is needed
-        TriangleGrid grid = new TriangleGrid(5,5);
+        TriangleGrid grid = new TriangleGrid(5,5, false);
         String letter = grid.add_space(5,"123");
         String target = " 123 ";
         assertTrue(Objects.equals(letter, target));
@@ -38,7 +38,7 @@ public class gridTest {
 
     @Test
     void setupBoardRectangle(){
-        RectangleGrid grid = new RectangleGrid(7,6);
+        RectangleGrid grid = new RectangleGrid(7,6, false);
         String letters = "";
         letters = letters + "0123456789hdssfvdggvdgbshhdhbcvbcvdggdggdbbcb";
         grid.initializeBoard(letters);
@@ -47,7 +47,7 @@ public class gridTest {
 
     @Test
     void setupBoardTriangle() {
-        TriangleGrid grid = new TriangleGrid(5,3);
+        TriangleGrid grid = new TriangleGrid(5,3, false);
         String letters = "";
         letters = letters + "0123456789hdssfvdggvdgbshhdhbcvbcvdggdggdbbcb";
 
@@ -59,7 +59,7 @@ public class gridTest {
 
     @Test
     void setupBoardDiamond() {
-        DiamondGrid grid = new DiamondGrid(13,13);
+        DiamondGrid grid = new DiamondGrid(13,13, true);
         String letters = "";
         letters = letters + "0123456789hdssfvdggvdgbshhdh" +
                 "bcvbcvdggdggdbbfbhcfhffbhffbfbfbbfbffbbf" +

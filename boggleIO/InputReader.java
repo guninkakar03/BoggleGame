@@ -215,37 +215,6 @@ public class InputReader {
     }
 
     /**
-     * Read the word that the user inputs while playing the game
-     */
-    public void readGameInput(){
-        boolean stopCommandCalled = false;
-
-        // User can keep inputting commands until they input the start command
-        while(!stopCommandCalled){
-            this.inputCommand = new DisplayBoardCommand(this.receiver);
-            this.inputCommand.execute();
-            System.out.println("Input word (or type -end to end your turn:");
-            String input = this.scanner.nextLine();
-            // Check the word being inputted, or the -end command to end the round
-            switch (input.toLowerCase()){
-                case "-end":
-                    stopCommandCalled = true;
-                    this.inputCommand = new EndTurnCommand(this.receiver);
-                    this.inputCommand.execute();
-                    break;
-                case "-hint":
-                    this.inputCommand = new GetHintCommand(this.receiver);
-                    this.inputCommand.execute();
-                    break;
-                default:
-                    this.inputCommand = new CheckWordCommand(this.receiver, input.toLowerCase());
-                    this.inputCommand.execute();
-                    break;
-            }
-        }
-    }
-
-    /**
      * Get the current command in inputCommand
      *
      * @return the current command of inputCommand

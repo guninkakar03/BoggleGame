@@ -2,7 +2,6 @@ package boggle;
 
 import boggleIO.InputReader;
 import boggleIO.OutputWriter;
-import commands.DisplayBoardCommand;
 import strategy.EasyLettersStrategy;
 import strategy.HardLettersStrategy;
 import strategy.MediumLettersStrategy;
@@ -105,13 +104,6 @@ public class BoggleGame {
      */
     public void printSettings(){
         this.writer.printGameSettings(this.boardShape, this.difficulty, this.boardDimensions, this.dyslexiaMode);
-    }
-
-    /**
-     * Action method which calls OutputWriter.printGameBoard() to print the current board.
-     */
-    public void printBoard(){
-        this.writer.printGameBoard(this.board);
     }
 
     /**
@@ -268,11 +260,11 @@ public class BoggleGame {
 
             //Initialize the grid based on what type of grid the user chose
             if (boardShape.equals("rectangle")) {
-                this.board = new RectangleGrid(boardDimensions[0], boardDimensions[1]);
+                this.board = new RectangleGrid(boardDimensions[0], boardDimensions[1], this.dyslexiaMode);
             } else if (boardShape.equals("diamond")) {
-                this.board = new DiamondGrid(5, 5);
+                this.board = new DiamondGrid(5, 5, this.dyslexiaMode);
             } else {
-                this.board = new TriangleGrid(5, 3);
+                this.board = new TriangleGrid(5, 3, this.dyslexiaMode);
             }
             this.board.initializeBoard(letters);
             startGame();
