@@ -71,6 +71,8 @@ public class HumanPlayer extends Player {
             word = scanner.nextLine();
             if (word == ""){
                 keepPlaying = false;
+            } else if (word.equalsIgnoreCase("h")){
+                this.askHints();
             } else {
                 this.addWord(word);
             }
