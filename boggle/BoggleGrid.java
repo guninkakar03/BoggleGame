@@ -9,9 +9,15 @@ import dice.Die;
 public class BoggleGrid {
 
     /**
-     * size of grid
+     * number of rows in the grid
      */  
-    private int size;
+    private int rows;
+    /**
+     * number of rows in the grid
+     */
+    private int cols;
+
+
     /**
      * dice assigned to grid
      */      
@@ -21,9 +27,10 @@ public class BoggleGrid {
      * ----------------------
      * @param size  The size of the Boggle grid to initialize
      */
-    public BoggleGrid(int size) {
-        this.size = size;
-        this.board = new Die[size][size];
+    public BoggleGrid(int rows, int cols) {
+        this.rows = rows;
+        this.cols = cols;
+        this.board = new Die[rows][cols];
     }
 
     /* 
@@ -33,8 +40,8 @@ public class BoggleGrid {
      * @param letters a string of letters, one for each grid position.
      */
     public void initializeBoard() {
-        for(int i=0; i<size*size; i++){
-            this.board[i/this.size][i%this.size] = new Die();
+        for(int i=0; i<this.rows*this.cols; i++){
+            this.board[i/this.rows][i%this.cols] = new Die();
         }
     }
 
@@ -47,8 +54,8 @@ public class BoggleGrid {
     @Override
     public String toString() {
         String boardString = "";
-        for(int row = 0; row < this.size; row++){
-            for(int col = 0; col < this.size; col++){
+        for(int row = 0; row < this.rows; row++){
+            for(int col = 0; col < this.cols; col++){
                 boardString += this.board[row][col].toString() + " ";
             }
             boardString += "\n";
@@ -60,14 +67,14 @@ public class BoggleGrid {
      * @return int the number of rows on the board
      */
     public int numRows() {
-        return this.size;
+        return this.rows;
     }
 
     /* 
      * @return int the number of columns on the board (assumes square grid)
      */
     public int numCols() {
-        return this.size;
+        return this.cols;
     }
 
     /* 
