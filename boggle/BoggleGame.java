@@ -20,48 +20,44 @@ public class BoggleGame {
      * The Single BoggleGame instance that will be called each time
      */
     private static final BoggleGame INSTANCE = new BoggleGame();
-    /**
-     * scanner used to interact with the user via console
-     */ 
-    public Scanner scanner;
 
     /**
-     * scanner used to interact with the user via console
+     * Scanner used to interact with the user via console
      */
     public InputReader reader;
 
     /**
-     * temporary variable to hold the shape of the board
+     * Hold the shape of the board
      */
     public String boardShape;
 
     /**
-     * temporary variable to hold the board dimensions
+     * Hold the board dimensions
      */
     public int[] boardDimensions;
 
     /**
-     * temporary variable to hold whether or not dyslexia mode is turned on
+     * Hold whether or not dyslexia mode is turned on
      */
     public boolean dyslexiaMode;
 
     /**
-     * temporary variable to keep track of the difficulty of the game
+     * Keep track of the difficulty of the game
      */
     public String difficulty;
 
     /**
-     * temporary variable to keep track of which strategy is being used
+     * Keep track of which strategy is being used
      */
     public generateLettersStrategy strategy;
 
     /**
-     * temporary variable to hold whether or not multiplayer is turned on
+     * Hold whether or not multiplayer is turned on
      */
     public boolean multiplayer;
 
     /**
-     * scanner used to interact with the user via console
+     * OutputWriter to display information to the user
      */
     public OutputWriter writer;
 
@@ -75,20 +71,6 @@ public class BoggleGame {
      */ 
     private BoggleStats gameStats;
 
-//    /**
-//     * dice used to randomize letter assignments for a small grid
-//     */
-//    private final String[] dice_small_grid= //dice specifications, for small and large grids
-//            {"AAEEGN", "ABBJOO", "ACHOPS", "AFFKPS", "AOOTTW", "CIMOTU", "DEILRX", "DELRVY",
-//                    "DISTTY", "EEGHNW", "EEINSU", "EHRTVW", "EIOSST", "ELRTTY", "HIMNQU", "HLNNRZ"};
-//    /**
-//     * dice used to randomize letter assignments for a big grid
-//     */
-//    private final String[] dice_big_grid =
-//            {"AAAFRS", "AAEEEE", "AAFIRS", "ADENNN", "AEEEEM", "AEEGMU", "AEGMNN", "AFIRSY",
-//                    "BJKQXZ", "CCNSTW", "CEIILT", "CEILPT", "CEIPST", "DDLNOR", "DDHNOT", "DHHLOR",
-//                    "DHLNOR", "EIIITT", "EMOTTT", "ENSSSU", "FIPRSY", "GORRVW", "HIPRRY", "NOOTUW", "OOOTTU"};
-
     public HumanPlayer human;
 
     public HumanPlayer human2;
@@ -99,12 +81,11 @@ public class BoggleGame {
      * BoggleGame constructor
      */
     private BoggleGame() {
-
-        this.scanner = new Scanner(System.in);
         this.reader = new InputReader(this);
         this.writer = new OutputWriter();
         this.gameStats = new BoggleStats();
     }
+
     public static BoggleGame getInstance(){
         return INSTANCE;
     }
@@ -164,15 +145,6 @@ public class BoggleGame {
      */
     public void startGame(){
 
-        //Initialize the grid based on what type of grid the user chose
-        if(boardShape.equals("rectangle")){
-            this.board  = new RectangleGrid(boardDimensions[0], boardDimensions[1]);
-        } else if (boardShape.equals("diamond")) {
-            this.board = new DiamondGrid(boardDimensions[0], boardDimensions[1]);
-        } else{
-            this.board = new TriangleGrid(boardDimensions[0], boardDimensions[1]);
-        }
-
         //Step 2: Initalize the Dictionary of valid words
         Dictionary dictionary = new Dictionary("wordlist.txt");
 
@@ -190,7 +162,7 @@ public class BoggleGame {
 
 
 
-        }else{//play single player game
+        }else{ //play single player game
             this.human = new HumanPlayer(allWords,this.board);
             this.computer = new ComputerPlayer(allWords, this.human);
 
@@ -270,24 +242,32 @@ public class BoggleGame {
     }
 
 
-    /* 
+    /**
      * Gets information from the user to initialize a new Boggle game.
      * It will loop until the user indicates they are done playing.
      */
-    public void playGame() {
+    public void setupGame() {
         int boardSize;
         while (true) {
             reader.getGameSettings();
-            int numLetters = 0;
             if(this.boardShape == "diamond"){
-                numLetters = 13;
+                boardSize = 13;
             } else if (this.boardShape == "triangle"){
-                numLetters = 9;
+                boardSize = 9;
             } else { // board is rectangular
-                numLetters = this.boardDimensions[0] * this.boardDimensions[1];
+                boardSize = this.boardDimensions[0] * this.boardDimensions[1];
             }
-            String letters = this.strategy.execute(numLetters, this.dyslexiaMode);
-            System.out.println("BOARD LETTERS: " + letters);
+            String letters = this.strategy.execute(boardSize, this.dyslexiaMode);
+
+            //Initialize the grid based on what type of grid the user chose
+            if(boardShape.equals("rectangle")){
+                this.board  = new RectangleGrid(boardDimensions[0], boardDimensions[1]);
+            } else if (boardShape.equals("diamond")) {
+                this.board = new DiamondGrid(boardDimensions[0], boardDimensions[1]);
+            } else{
+                this.board = new TriangleGrid(boardDimensions[0], boardDimensions[1]);
+            }
+
 //            System.out.println("Enter 1 to play on a big (5x5) grid; 2 to play on a small (4x4) one:");
 //            String choiceGrid = scanner.nextLine();
 //
