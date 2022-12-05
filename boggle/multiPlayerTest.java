@@ -25,7 +25,7 @@ public class multiPlayerTest {
     void test_something(){
 
         // grid of the game
-        RectangleGrid grid =  new RectangleGrid(5,5);
+        RectangleGrid grid =  new RectangleGrid(5,5, false);
 
         // setting up the map
         Map<String, ArrayList<Position>> allWords =  new HashMap<>();

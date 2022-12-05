@@ -17,6 +17,9 @@ public abstract class Grid {
     // height of the Boggle Board
     private int height;
 
+    // boolean of whether or not letters in board should be spaced
+    private boolean dyslexiaMode;
+
     // 2D array representation of the Boggle Board
     private char[][] board;
 
@@ -24,21 +27,21 @@ public abstract class Grid {
 
     abstract void initializeBoard(String letters);
 
-    /*
+    /**
      * @return int the number of rows on the board
      */
     public int numRows() {
         return this.width;
     }
 
-    /*
+    /**
      * @return int the number of columns on the board (assumes square grid)
      */
     public int numCols() {
         return this.height;
     }
 
-    /*
+    /**
      * @return char the character at a given grid position
      */
     public char getCharAt(int row, int col) {
