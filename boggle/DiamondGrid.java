@@ -122,19 +122,18 @@ public class DiamondGrid extends Grid{
     }
 
 
-
     /*
      * @return int the number of rows on the board
      */
     public int numRows() {
-        return this.width;
+        return this.height;
     }
 
     /*
      * @return int the number of columns on the board (assumes square grid)
      */
     public int numCols() {
-        return this.height;
+        return this.width;
     }
 
     /*
