@@ -11,7 +11,7 @@ public class Main {
     public static void main(String[] args) {
         BoggleGame b = BoggleGame.getInstance();
         b.giveInstructions();
-        b.playGame();
+        b.setupGame();
     }
 
 }

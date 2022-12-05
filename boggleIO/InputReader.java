@@ -188,28 +188,24 @@ public class InputReader {
             String input = this.scanner.nextLine();
             // Check which command has been inputted
             switch (input.toLowerCase()){
-                case "-help":
+                case "-help": case "-h":
                     this.inputCommand = new DisplayPossibleInputsCommand(this.receiver);
                     this.inputCommand.execute();
                     break;
-                case "-shape":
+                case "-shape": case "-sh":
                     this.getBoardShape();
                     break;
-                case "-multiplayer":
+                case "-multiplayer": case "-m":
                     this.getMultiplayer();
                     break;
-                case "-difficulty":
+                case "-difficulty": case "-diff":
                     this.getBoardDifficulty();
                     break;
-                case "-dyslexia":
+                case "-dyslexia": case "-dys":
                     this.getDyslexiaMode();
                     break;
-                case "-start":
-                    System.out.println("You inputted the -start");
+                case "-start": case "-s": case "":
                     startCommandCalled = true;
-                    this.inputCommand = new StartGameCommand(this.receiver);
-                    this.inputCommand.execute();
-
                     break;
                 default:
                     System.out.println("Invalid command");
