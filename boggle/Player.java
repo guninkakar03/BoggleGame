@@ -28,6 +28,11 @@ public abstract class Player {
      */
     public Map<String, ArrayList<Position>> allWords;
 
+    /**
+     * Dictionary to generate hint
+     */
+    private Hints typeHint;
+
     public Player(Map<String, ArrayList<Position>> allWords) {
         this.allWords = allWords;
     }
@@ -61,7 +66,7 @@ public abstract class Player {
      * @param An integer representation of the score.
      *
      */
-    public void setScore(int score){
+    public void setScore(int score) {
         this.score = score;
     }
 
@@ -72,7 +77,7 @@ public abstract class Player {
      * @return list of the words found by this player
      *
      */
-    public Set<String> getPlayerWords(){
+    public Set<String> getPlayerWords() {
         return this.playerWords;
     }
 
@@ -83,7 +88,7 @@ public abstract class Player {
      * @return an integer representation of the score
      *
      */
-    public int getScore(){
+    public int getScore() {
         return this.score;
     }
 
@@ -91,9 +96,10 @@ public abstract class Player {
      * This method re-sets the score of the player.
      *
      */
-    public void resetScore(){
+    public void resetScore() {
         this.score = 0;
     }
 
-
 }
+
+
