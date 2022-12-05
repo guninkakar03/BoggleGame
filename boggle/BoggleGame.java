@@ -272,7 +272,7 @@ public class BoggleGame {
             } else if (boardShape.equals("diamond")) {
                 this.board = new DiamondGrid(5, 5);
             } else {
-                this.board = new TriangleGrid(5, 5);
+                this.board = new TriangleGrid(5, 3);
             }
             this.board.initializeBoard(letters);
             startGame();
