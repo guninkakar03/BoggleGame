@@ -68,7 +68,7 @@ public class BoggleGame {
     /**
      * stores game statistics
      */ 
-    private BoggleStats gameStats;
+    private GameStats gameStats;
 
     public HumanPlayer human;
 
@@ -78,14 +78,15 @@ public class BoggleGame {
 
     public findAllWords findAllWords;
 
+    public Scanner scanner;
+
     /**
      * BoggleGame constructor
      */
     private BoggleGame() {
         this.reader = new InputReader(this);
         this.writer = new OutputWriter();
-        this.gameStats = new BoggleStats();
-
+        this.scanner = new Scanner(System.in);
     }
 
     public static BoggleGame getInstance(){
@@ -129,31 +130,60 @@ public class BoggleGame {
         //Step 2: Initalize the Dictionary of valid words
         Dictionary dictionary = new Dictionary("wordlist.txt");
 
-        findAllWords findAllWords1 = new findAllWords(board,dictionary);
-        findAllWords1.findWords();
-        //Step 3: Instantiate new FindAllWords class
-        //FindAllWords findAllWords = new FindAllWords(this.board);
-        Map<String, ArrayList<Position>> allWords = findAllWords1.allWords;
-        System.out.println(allWords.keySet());
 
+
+        boolean new_round = true;
         //Step 4: instantiate the human(s) and computer(if required)
-        if(multiplayer){ //play multiplayer game
-            this.human = new HumanPlayer(allWords,this.board);
-            this.human2 = new HumanPlayer(allWords,this.board);
+        while (new_round){
+            int boardSize = 0;
+            if (this.boardShape == "diamond") {
+                boardSize = 13;
+            } else if (this.boardShape == "triangle") {
+                boardSize = 9;
+            } else { // board is rectangular
+                boardSize = this.boardDimensions[0] * this.boardDimensions[1];
+            }
+            String letters = this.strategy.execute(boardSize, this.dyslexiaMode);
+            this.board.initializeBoard(letters);
+            findAllWords findAllWords1 = new findAllWords(board,dictionary);
+            findAllWords1.findWords();
+            //Step 3: Instantiate new FindAllWords class
+            //FindAllWords findAllWords = new FindAllWords(this.board);
+            Map<String, ArrayList<Position>> allWords = findAllWords1.allWords;
+            System.out.println(allWords.keySet());
 
-            this.human.makeMove();
-            this.human2.makeMove();
+            if(multiplayer){ //play multiplayer game
+                this.human = new HumanPlayer(allWords,this.board);
+                this.human2 = new HumanPlayer(allWords,this.board);
 
 
+                this.gameStats = new GameStats(this.board,this.human,this.human2);
+                this.human.makeMove();
+                System.out.println("Now, it is second player's turn");
+                this.human2.makeMove();
+                this.gameStats.endRound();
 
-        }else{ //play single player game
-            this.human = new HumanPlayer(allWords,this.board);
-            this.computer = new ComputerPlayer(allWords, this.human);
 
-            this.human.makeMove();
-            this.computer.makeMove();
-            this.gameStats.endRound();
+            }else{ //play single player game
+                this.human = new HumanPlayer(allWords,this.board);
+                this.computer = new ComputerPlayer(allWords, this.human);
+
+                this.gameStats = new GameStats(this.board,this.human,this.computer);
+                this.human.makeMove();
+                System.out.println("Now, it is computer's turn");
+                this.computer.makeMove();
+                this.gameStats.endRound();
+            }
+
+            System.out.println("Want to play another round: ");
+            String word = scanner.nextLine();
+            if (word.equalsIgnoreCase("n")){
+                new_round = false;
+            }
+
         }
+        this.gameStats.endGame();
+
 
     }
 
@@ -252,6 +282,7 @@ public class BoggleGame {
             }
             this.board.initializeBoard(letters);
             startGame();
+
 
         }
     }

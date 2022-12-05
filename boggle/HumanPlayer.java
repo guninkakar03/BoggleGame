@@ -61,7 +61,7 @@ public class HumanPlayer extends Player {
         while(keepPlaying) {
             String word = "";
             System.out.println(board); //change to the display Board Command
-            System.out.println("Enter Word:");
+            System.out.println("Enter Word or h for hints:");
             word = scanner.nextLine();
             if (word == ""){
                 keepPlaying = false;
