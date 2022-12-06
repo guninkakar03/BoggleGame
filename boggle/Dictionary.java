@@ -47,7 +47,7 @@ public class Dictionary {
         {
             e.printStackTrace();
         }
-        System.out.println("Initialized " + wordcount + " words in the Dictionary.");;
+        //System.out.println("Initialized " + wordcount + " words in the Dictionary.");;
     }
 
     /**
@@ -60,6 +60,7 @@ public class Dictionary {
 
         //read in the file that has all the valid words
         String line = "";
+        //ArrayList<String> meaningHolder=new ArrayList<>();
         int wordcount = 0;
         this.legalWords = allWords;
         // Initialising the HashMap
@@ -68,7 +69,7 @@ public class Dictionary {
         List<String> csvList = new ArrayList<>();
         File csvFiles = new File("CSV files");
 
-        //loads all of the csv files into the list
+        //loads all the csv files into the list
         if(csvFiles.listFiles() != null){
             for (String csv: csvFiles.list()) {
                 csvList.add(csv);
@@ -102,10 +103,12 @@ public class Dictionary {
                                 br.readLine();
                             else{
                             String meaning_part = line.substring(line.indexOf(')') + 1, line.length() - indexStart).replace(",", "");
+                            //meaningHolder.add(meaning_part);
                             //String checked = word;
                             if (wordPart.equals(word.toLowerCase())){
                                 // Populating the dictionary with the word and its meaning.
-                                this.word_meaning.put(word, meaning_part);}
+                                if(this.word_meaning.get(word).equals(""))
+                                    this.word_meaning.put(word, meaning_part);}
                             br.readLine();}
                         }
 
@@ -117,7 +120,7 @@ public class Dictionary {
         {
             e.printStackTrace();
         }
-        System.out.println("Initialized " + wordcount + " words in the Dictionary.");
+        //System.out.println("Initialized " + wordcount + " words in the Dictionary.");
     }
 
     /* 
@@ -145,7 +148,7 @@ public class Dictionary {
     /*
      * Returns the updated Hashmap containing the word as keys and meaning as the meanings of the wordlist
      */
-    public HashMap<String,String> get_word_meanings(){
+    public HashMap<String,String> getWordMeanings(){
         return this.word_meaning;
     }
 

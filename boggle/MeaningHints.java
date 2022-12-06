@@ -1,5 +1,7 @@
 package boggle;
 
+import java.util.ArrayList;
+
 /**
  * Class to implement the Meaning Hint which will give the client the meaning of a word from board as a Hint.
  */
@@ -19,7 +21,7 @@ public class MeaningHints extends Hints{
      *
      */
     public String getHint(String word){
-      String res= this.dict.get_word_meanings().get(word);
+      String res= this.dict.getWordMeanings().get(word);
         //System.out.println("Your Meaning hint is:"+ res);
         return res;
     }
