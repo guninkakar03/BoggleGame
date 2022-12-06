@@ -9,16 +9,24 @@ import java.util.Objects;
  */
 public class RectangleGrid extends Grid {
 
-    // width of the Boggle Board
+    /**
+     * width of the Boggle Board
+     */
     private int width;
 
-    // height of the Boggle Board
+    /**
+     * height of the Boggle Board
+     */
     private int height;
 
-    // boolean of whether letters in board should be spaced
+    /**
+     * boolean of whether letters in board should be spaced
+     */
     private boolean dyslexiaMode;
 
-    // 2D array representation of the Boggle Board
+    /**
+     * 2D array representation of the Boggle Board
+     */
     private char[][] board;
 
     /**
@@ -56,8 +64,8 @@ public class RectangleGrid extends Grid {
      * This method looks up all the possible neighbours on the board, from a particular position
      * on the board.
      *
-     * @param int row which represents the row
-     * @param int col which represents the column.
+     * @param row integer which represents the row
+     * @param col integer which represents the column.
      * @return ArrayList<Position> This represents all the positions ard row and col where letters exits.
      */
     @Override

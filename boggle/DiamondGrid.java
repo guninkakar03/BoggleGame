@@ -5,20 +5,29 @@ import java.util.Collections;
 import java.util.Objects;
 
 /**
+ *
  * This class is the factory that produces Diamond shaped grid.
  */
 public class DiamondGrid extends Grid{
 
-    // width of the Boggle Board
+    /**
+     * width of the Boggle Board
+     */
     private int width;
 
-    // height of the Boggle Board
+    /**
+     * height of the Boggle Board
+     */
     private int height;
 
-    // boolean of whether letters in board should be spaced
+    /**
+     *  boolean of whether letters in board should be spaced
+     */
     private boolean dyslexiaMode;
 
-    // 2D array representation of the Boggle Board
+    /**
+     * 2D array representation of the Boggle Board
+     */
     private char[][] board;
 
     /**

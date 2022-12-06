@@ -5,6 +5,7 @@ package boggle;
  * from board as a Hint.
  */
 public class LetterHints extends Hints {
+
     /** MeaningHints Constructor, inheriting the Hints constructor
      * ----------------------
      * @param dict  The Dictionary of the Game
@@ -13,11 +14,12 @@ public class LetterHints extends Hints {
     public LetterHints(Dictionary dict){
         super(dict);
     }
+
     /**
      * Provides the first and last letter with its length as a string representation to the player.
+     *
      * @param word random word in the grid from dictionary.
      * @return the first, last letter with its length of the word
-     *
      */
     public String getHint(String word){
         int len= word.length();

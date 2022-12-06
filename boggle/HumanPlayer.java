@@ -3,6 +3,10 @@ package boggle;
 
 import java.util.*;
 
+/**
+ * The HumanPlayer Class that will contain the methods and attirbutes
+ * that will allow a player to play the Boggle game
+ */
 public class HumanPlayer extends Player {
 
     /**
@@ -148,7 +152,7 @@ public class HumanPlayer extends Player {
 
     /**
      * This method generates the specific type of hint asked by the player.
-     *@return The hint for the player.
+     * @return The hint for the player.
      */
     public void askHints() {
         if (this.hintcounter >= 5) {

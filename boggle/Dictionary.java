@@ -47,7 +47,7 @@ public class Dictionary {
         {
             e.printStackTrace();
         }
-        //System.out.println("Initialized " + wordcount + " words in the Dictionary.");;
+
     }
 
     /**
@@ -60,7 +60,6 @@ public class Dictionary {
 
         //read in the file that has all the valid words
         String line = "";
-        //ArrayList<String> meaningHolder=new ArrayList<>();
         int wordcount = 0;
         this.legalWords = allWords;
         // Initialising the HashMap
@@ -86,7 +85,7 @@ public class Dictionary {
         try {
             for (String word: this.word_meaning.keySet()) {
                 for (int i = 0; i < csvList.size(); i++) {
-                        //String first_letter=(String) csvList.get(i).charAt(0)
+
                     if(Character.toLowerCase(csvList.get(i).charAt(0))==word.charAt(0)){
                         //parsing a CSV file into BufferedReader class constructor
                         BufferedReader br = new BufferedReader(new FileReader("CSV Files/"+csvList.get(i)));
@@ -103,8 +102,7 @@ public class Dictionary {
                                 br.readLine();
                             else{
                             String meaning_part = line.substring(line.indexOf(')') + 1, line.length() - indexStart).replace(",", "");
-                            //meaningHolder.add(meaning_part);
-                            //String checked = word;
+
                             if (wordPart.equals(word.toLowerCase())){
                                 // Populating the dictionary with the word and its meaning.
                                 if(this.word_meaning.get(word).equals(""))
@@ -120,10 +118,10 @@ public class Dictionary {
         {
             e.printStackTrace();
         }
-        //System.out.println("Initialized " + wordcount + " words in the Dictionary.");
+
     }
 
-    /* 
+    /**
      * Checks to see if a provided word is in the dictionary.
      *
      * @param word  The word to check
@@ -132,7 +130,8 @@ public class Dictionary {
     public boolean containsWord(String word) {
         return this.legalWords.contains(word.toLowerCase());
     }
-    /* 
+
+    /**
      * Checks to see if a provided string is a prefix of any word in the dictionary.
      *
      * @param str  The string to check
@@ -145,7 +144,7 @@ public class Dictionary {
         }
         return this.legalWords.ceiling(str).contains(str);
     }
-    /*
+    /**
      * Returns the updated Hashmap containing the word as keys and meaning as the meanings of the wordlist
      */
     public HashMap<String,String> getWordMeanings(){

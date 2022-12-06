@@ -5,7 +5,10 @@ package boggle;
  *
  */
 public class GridFactory {
-    private Grid board; // This is the board to be returned to the client.
+    /**
+     * This is the board to be returned to the client.
+     */
+    private Grid board;
 
     /**
      * This method takes in all the information from the client, and it makes instances to corresponding

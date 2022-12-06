@@ -7,13 +7,21 @@ import java.util.Map;
 /**
  * The findAllWords interface that FindAllWordsStrategy will implement
  */
-
 public class findAllWords {
 
+    /**
+     * all the valid words that can be found on the grid mapped to their list of positions
+     */
     public Map<String,ArrayList<Position>> allWords;
 
+    /**
+     * The grid that the game will be played on
+     */
     public Grid grid;
 
+    /**
+     * The dictionary that will be referenced by the grid
+     */
     public Dictionary dict;
     public findAllWords(Grid grid, Dictionary dict){
         this.grid = grid;
@@ -48,7 +56,6 @@ public class findAllWords {
      *      might we need to evaluate?
      */
     public void findWords() {
-//        int dimensions = grid.numRows();//holds the dimensions of grid
         int num_rows = grid.numRows();
         int num_cols = grid.numCols();
         Map<String,ArrayList<Position>> wordsList = new HashMap<>(); //make new map to hold all our curr words
@@ -145,24 +152,5 @@ public class findAllWords {
         }
         return false;
     }
-
-//    /**
-//     * The grid that will be operated on
-//     */
-//    public BoggleGrid grid = null;
-//    /**
-//     * The hashmap that maps all the different words on the grid to the list of positions
-//     * that we must take to get that words
-//     */
-//    public Map<String, ArrayList<Position>> allWords = null;
-//    /**
-//     * A list of all the possible words on the grid
-//     */
-//    public Set<String> allWordsList = null;
-//
-//    /**
-//     *  Execute a command that will find all the words of a given BoggleGrid.
-//     */
-//    public void execute();
 }
 

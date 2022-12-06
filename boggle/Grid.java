@@ -10,24 +10,33 @@ import java.util.ArrayList;
  */
 
 public abstract class Grid {
-    // width of the Boggle Board
+    /**
+     * width of the Boggle Board
+     */
     private int width;
 
-    // height of the Boggle Board
+    /**
+     * height of the Boggle Board
+     */
     private int height;
 
-    // boolean of whether or not letters in board should be spaced
+    /**
+     * boolean of whether or not letters in board should be spaced
+     */
+
     private boolean dyslexiaMode;
 
-    // 2D array representation of the Boggle Board
+    /**
+     * 2D array representation of the Boggle Board
+     */
     private char[][] board;
 
     /**
      * This method looks up all the possible neighbours on the board, from a particular position
      * on the board.
      *
-     * @param int row which represents the row
-     * @param int col which represents the column.
+     * @param row integer that represents the row
+     * @param col integer that represents the column.
      * @return ArrayList<Position> This represents all the positions ard row and col where letters exits.
      */
     abstract ArrayList<Position> getNeighbours(int row, int col);
@@ -40,21 +49,26 @@ public abstract class Grid {
      */
     abstract void initializeBoard(String letters);
 
-    /**
+    /** Method to reference the number of rows on the board
+     *
      * @return int the number of rows on the board
      */
     public int numRows() {
         return this.width;
     }
 
-    /**
+    /** Method to reference the number of columns on the board
+     *
      * @return int the number of columns on the board (assumes square grid)
      */
     public int numCols() {
         return this.height;
     }
 
-    /**
+    /**Method to reference the character at a given row and column on the board
+     * @param row the row that will be referenced
+     * @param col the column that will be referenced
+     *
      * @return char the character at a given grid position
      */
     public char getCharAt(int row, int col) {
