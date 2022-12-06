@@ -5,6 +5,9 @@ import java.util.Scanner;
 import boggle.BoggleGame;
 import commands.*;
 
+/**
+ * The InputReader Class that will be able to take in inputs to change how the game will be played
+ */
 public class InputReader {
 
     /**

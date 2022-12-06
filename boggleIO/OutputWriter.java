@@ -1,5 +1,9 @@
 package boggleIO;
 
+/**
+ * The OutputWriter Class that will display to the user the information they need to play the game
+ *
+ */
 public class OutputWriter {
 
     /**

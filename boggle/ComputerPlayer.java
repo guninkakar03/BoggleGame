@@ -2,6 +2,11 @@ package boggle;
 
 import java.util.*;
 
+/**
+ * The ComputerPlayer Class which is a child class of Player
+ * It will contain methods and attributes to allow the computer to play the game and retain information
+ *
+ */
 public class ComputerPlayer extends Player{
 
     /**
