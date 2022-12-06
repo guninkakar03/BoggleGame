@@ -1,5 +1,7 @@
-package boggle;
+package grid;
 
+
+import boggle.Position;
 
 import java.util.ArrayList;
 
@@ -39,7 +41,7 @@ public abstract class Grid {
      * @param col integer that represents the column.
      * @return ArrayList<Position> This represents all the positions ard row and col where letters exits.
      */
-    abstract ArrayList<Position> getNeighbours(int row, int col);
+    public abstract ArrayList<Position> getNeighbours(int row, int col);
 
     /**
      * Assigns a letter in the string of letters to each grid position
@@ -47,7 +49,7 @@ public abstract class Grid {
      *
      * @param letters a string of letters, one for each grid position.
      */
-    abstract void initializeBoard(String letters);
+    public abstract void initializeBoard(String letters);
 
     /** Method to reference the number of rows on the board
      *

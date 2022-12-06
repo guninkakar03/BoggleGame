@@ -1,19 +1,10 @@
-package boggle;
+package player;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.io.PrintStream;
 import java.util.*;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
-import java.lang.reflect.Field;
 
-import boggle.*;
-import boggle.Dictionary;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
+import boggle.GameStats;
+import boggle.Position;
+import grid.RectangleGrid;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

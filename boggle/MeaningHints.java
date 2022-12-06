@@ -1,6 +1,6 @@
 package boggle;
 
-import java.util.ArrayList;
+import dictionary.Dictionary;
 
 /**
  * Class to implement the Meaning Hint which will give the client the meaning of a word from board as a Hint.

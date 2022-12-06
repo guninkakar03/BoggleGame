@@ -1,14 +1,15 @@
-package boggle;
+package grid;
+
+import boggle.Position;
+import grid.Grid;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Objects;
 
 /**
- *
- * This class is the factory that produces Diamond shaped grid.
+ * This class is the factory that produces Triangle shaped grid.
  */
-public class DiamondGrid extends Grid{
+public class TriangleGrid extends Grid {
 
     /**
      * width of the Boggle Board
@@ -21,7 +22,7 @@ public class DiamondGrid extends Grid{
     private int height;
 
     /**
-     *  boolean of whether letters in board should be spaced
+     * boolean of whether letters in board should be spaced
      */
     private boolean dyslexiaMode;
 
@@ -31,13 +32,13 @@ public class DiamondGrid extends Grid{
     private char[][] board;
 
     /**
-     * The constructor of DiamondBoard
+     * The constructor of TriangleBoard
      * __________________________________
      * @param width the width of the board
      * @param height the height of the board
      * @param dyslexiaMode the mode of accessibility
      */
-    public DiamondGrid(int width, int height, boolean dyslexiaMode) {
+    public TriangleGrid(int width, int height, boolean dyslexiaMode) {
         this.width = width;
         this.height = height;
         this.dyslexiaMode = dyslexiaMode;
@@ -58,7 +59,7 @@ public class DiamondGrid extends Grid{
         // number of items to add
         ArrayList<Integer> number_of_items = new ArrayList<>();
 
-        for (int i = 1; i <= this.height+1; i+=2) {
+        for (int i = 1; i <= this.height+2; i+=2) {
             number_of_items.add(i);
         }
 
@@ -73,18 +74,6 @@ public class DiamondGrid extends Grid{
             }
             new_letters += add_space(this.width,temp);
         }
-
-        Collections.reverse(number_of_items);
-
-        for (int i = 1; i < number_of_items.size(); i++) {
-            String temp = "";
-            for (int j = 0; j < number_of_items.get(i); j++) {
-                temp += letters.charAt(index);
-                index += 1;
-            }
-            new_letters += add_space(this.width,temp);
-        }
-
 
         int new_index = 0;
         for (int i = 0; i < this.height; i++) {
@@ -110,19 +99,18 @@ public class DiamondGrid extends Grid{
         int number_of_spaces = Math.abs(width - letter_length)/2;
         String new_letter = letter;
         for (int i = 0; i < number_of_spaces; i++) {
-            new_letter = " " + new_letter + " ";
+             new_letter = " " + new_letter + " ";
 
         }
         return new_letter;
     }
 
-
     /**
      * This method looks up all the possible neighbours on the board, from a particular position
      * on the board.
      *
-     * @param int row which represents the row
-     * @param int col which represents the column.
+     * @param row integer which represents the row
+     * @param col integer which represents the column.
      * @return ArrayList<Position> This represents all the positions ard row and col where letters exits.
      */
     public ArrayList<Position> getNeighbours(int row, int col) {
@@ -152,7 +140,6 @@ public class DiamondGrid extends Grid{
         }
         return travelTo;
     }
-
 
     /**
      * @return int the number of rows on the board
@@ -184,8 +171,8 @@ public class DiamondGrid extends Grid{
     @Override
     public String toString() {
         String boardString = "";
-        for(int row = 0; row < this.width; row++){
-            for(int col = 0; col < this.height; col++){
+        for(int row = 0; row < this.height; row++){
+            for(int col = 0; col < this.width; col++){
                 boardString += this.board[row][col] + " ";
                 if(this.dyslexiaMode){
                     boardString += "   ";

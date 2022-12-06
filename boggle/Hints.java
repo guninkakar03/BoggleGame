@@ -1,5 +1,7 @@
 package boggle;
 
+import dictionary.Dictionary;
+
 /**
  *  Abstract Class to implement different types of Hints
  */

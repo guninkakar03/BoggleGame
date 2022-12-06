@@ -1,5 +1,7 @@
 package boggle;
 
+import dictionary.Dictionary;
+
 /**
  * Class to implement the LetterHint which will give the client the first, last letter of a word with the length
  * from board as a Hint.

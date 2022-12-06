@@ -1,5 +1,8 @@
 package boggle;
 
+import dictionary.Dictionary;
+import grid.Grid;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;

@@ -1,4 +1,4 @@
-package boggle;
+package dictionary;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;

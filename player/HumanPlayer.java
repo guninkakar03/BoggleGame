@@ -1,5 +1,12 @@
-package boggle;
+package player;
 
+
+import boggle.LetterHints;
+import boggle.MeaningHints;
+import boggle.Position;
+import dictionary.Dictionary;
+import grid.Grid;
+import player.Player;
 
 import java.util.*;
 
@@ -171,7 +178,7 @@ public class HumanPlayer extends Player {
         TreeSet<String> setofWords = new TreeSet<>(words);
         Random r = new Random();
         String randomWordFromGrid;
-        Dictionary dict=new Dictionary(setofWords);
+        dictionary.Dictionary dict=new Dictionary(setofWords);
         if (hint.equals("lh")) {
             this.hintcounter += 1;
             this.score -= 1;

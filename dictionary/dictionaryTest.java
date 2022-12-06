@@ -1,7 +1,7 @@
-package boggle;
+package dictionary;
+import dictionary.Dictionary;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.TreeSet;
 

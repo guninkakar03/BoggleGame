@@ -2,6 +2,11 @@ package boggle;
 
 import boggleIO.InputReader;
 import boggleIO.OutputWriter;
+import dictionary.Dictionary;
+import grid.Grid;
+import grid.GridFactory;
+import player.ComputerPlayer;
+import player.HumanPlayer;
 import strategy.EasyLettersStrategy;
 import strategy.HardLettersStrategy;
 import strategy.MediumLettersStrategy;
@@ -129,7 +134,7 @@ public class BoggleGame {
     public void startGame(){
 
         //Step 2: Initalize the Dictionary of valid words
-        Dictionary dictionary = new Dictionary("wordlist.txt");
+        dictionary.Dictionary dictionary = new Dictionary("wordlist.txt");
 
 
         boolean new_round = true;

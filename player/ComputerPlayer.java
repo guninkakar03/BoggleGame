@@ -1,4 +1,8 @@
-package boggle;
+package player;
+
+import boggle.Position;
+import player.HumanPlayer;
+import player.Player;
 
 import java.util.*;
 
@@ -7,7 +11,7 @@ import java.util.*;
  * It will contain methods and attributes to allow the computer to play the game and retain information
  *
  */
-public class ComputerPlayer extends Player{
+public class ComputerPlayer extends Player {
 
     /**
      * The set of words the player finds in a given round.

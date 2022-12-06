@@ -1,5 +1,9 @@
 
-package boggle;
+package player;
+
+import boggle.Hints;
+import boggle.Position;
+import grid.Grid;
 
 import java.util.*;
 

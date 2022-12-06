@@ -1,7 +1,9 @@
-package boggle;
+package grid;
+
+import boggle.Position;
+import grid.Grid;
 
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.Objects;
 
 /**

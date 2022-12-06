@@ -1,7 +1,11 @@
 package boggle;
 
+import grid.Grid;
+import player.ComputerPlayer;
+import player.HumanPlayer;
+import player.Player;
+
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 

@@ -1,4 +1,4 @@
-package boggle;
+package grid;
 
 /**
  * This class will fulfil the clients need by calling
