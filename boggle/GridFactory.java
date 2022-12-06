@@ -1,8 +1,22 @@
 package boggle;
 
+/**
+ * This class will fulfil the clients need by calling
+ *
+ */
 public class GridFactory {
-    private Grid board;
+    private Grid board; // This is the board to be returned to the client.
 
+    /**
+     * This method takes in all the information from the client, and it makes instances to corresponding
+     * grids, as required.
+     *
+     * @param gridName this String shows which board is being formed.
+     * @param row the number of rows in the board.
+     * @param col the number of columns in the board.
+     * @param dyslexiaMode if the board has to follow the accessibility requirements.
+     * @return the Grid where letter will be initialized.
+     */
     public Grid makeGrid(String gridName, int row, int col, Boolean dyslexiaMode){
         if (gridName.equals("rectangle")) {
             this.board = new RectangleGrid(row, col, dyslexiaMode);

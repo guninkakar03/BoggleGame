@@ -27,3 +27,4 @@ public class StrategyTests {
         assertTrue(letters.equals(letters.toLowerCase()));
     }
 }
+

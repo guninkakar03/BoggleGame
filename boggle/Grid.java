@@ -4,9 +4,8 @@ package boggle;
 import java.util.ArrayList;
 
 /**
- * The Grid class for the first Assignment in CSC207, Fall 2022
  * The Grid represents the grid on which we play Boggle
- * This class is an abstract class as it extends to different classes that which represent different shapes of the
+ * This class is an abstract class as it extends to different classes which represent different shapes of the
  * grid.
  */
 
@@ -23,8 +22,22 @@ public abstract class Grid {
     // 2D array representation of the Boggle Board
     private char[][] board;
 
+    /**
+     * This method looks up all the possible neighbours on the board, from a particular position
+     * on the board.
+     *
+     * @param int row which represents the row
+     * @param int col which represents the column.
+     * @return ArrayList<Position> This represents all the positions ard row and col where letters exits.
+     */
     abstract ArrayList<Position> getNeighbours(int row, int col);
 
+    /**
+     * Assigns a letter in the string of letters to each grid position
+     * Letters should be assigned left to right, top to bottom
+     *
+     * @param letters a string of letters, one for each grid position.
+     */
     abstract void initializeBoard(String letters);
 
     /**
