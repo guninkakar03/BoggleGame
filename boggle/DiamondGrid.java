@@ -21,6 +21,13 @@ public class DiamondGrid extends Grid{
     // 2D array representation of the Boggle Board
     private char[][] board;
 
+    /**
+     * The constructor of DiamondBoard
+     * __________________________________
+     * @param width the width of the board
+     * @param height the height of the board
+     * @param dyslexiaMode the mode of accessibility
+     */
     public DiamondGrid(int width, int height, boolean dyslexiaMode) {
         this.width = width;
         this.height = height;

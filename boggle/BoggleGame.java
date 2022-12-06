@@ -71,12 +71,27 @@ public class BoggleGame {
      */ 
     private GameStats gameStats;
 
+    /**
+     * Human player
+     * this is always initialized
+     */
     public HumanPlayer human;
 
+    /**
+     * Human player
+     * This is initialized only if multiplayer is turned on
+     */
     public HumanPlayer human2;
 
+    /**
+     * Computer Player
+     * this is intialized only when playing against a computer.
+     */
     public ComputerPlayer computer;
 
+    /**
+     * This helps us find all the words on the Board
+     */
     public findAllWords findAllWords;
 
     public Scanner scanner;
@@ -107,21 +122,6 @@ public class BoggleGame {
     public void printSettings(){
         this.writer.printGameSettings(this.boardShape, this.difficulty, this.boardDimensions, this.dyslexiaMode);
     }
-    
-//    public void playRound(int size, String letters){
-//        //step 1. initialize the grid
-//        BoggleGrid grid = new BoggleGrid(size);
-////        grid.initalizeBoard(letters);
-//        //step 2. initialize the dictionary of legal words
-//        Dictionary boggleDict = new Dictionary("wordlist.txt"); //you may have to change the path to the wordlist, depending on where you place it.
-//        //step 3. find all legal words on the board, given the dictionary and grid arrangement.
-//        Map<String, ArrayList<Position>> allWords = new HashMap<String, ArrayList<Position>>();
-//        findAllWords(allWords, boggleDict, grid);
-//        //step 4. allow the user to try to find some words on the grid
-//        humanMove(grid, allWords);
-//        //step 5. allow the computer to identify remaining words
-//        computerMove(allWords);
-//    }
 
     /**
      * Action method which will start the boggle game
@@ -130,7 +130,6 @@ public class BoggleGame {
 
         //Step 2: Initalize the Dictionary of valid words
         Dictionary dictionary = new Dictionary("wordlist.txt");
-
 
 
         boolean new_round = true;
@@ -181,14 +180,9 @@ public class BoggleGame {
             if (word.equalsIgnoreCase("n")){
                 new_round = false;
             }
-
         }
         this.gameStats.endGame();
-
-
     }
-
-
 
     /**
      * Action method which will display a hint for the player

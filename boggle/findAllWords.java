@@ -21,11 +21,12 @@ public class findAllWords {
         this.dict = dict;
     }
 
-    /*
+    /**
      * This should be a recursive function that finds all valid words on the boggle board.
      * Every word should be valid (i.e. in the boggleDict) and of length 4 or more.
      * Words that are found should be entered into the allWords HashMap.  This HashMap
      * will be consulted as we play the game.
+     *
      *
      * Note that this function will be a recursive function.  You may want to write
      * a wrapper for your recursion. Note that every legal word on the Boggle grid will correspond to
@@ -45,10 +46,6 @@ public class findAllWords {
      *      if they can be used to form a valid word in the dictionary.
      * ---- Food for thought: If there are N Positions on the grid, how many possible lists of positions
      *      might we need to evaluate?
-     *
-     * @param allWords A mutable list of all legal words that can be found, given the boggleGrid grid letters
-     * @param boggleDict A dictionary of legal words
-     * @param boggleGrid A boggle grid, with a letter at each position on the grid
      */
     public void findWords() {
 //        int dimensions = grid.numRows();//holds the dimensions of grid
@@ -91,18 +88,14 @@ public class findAllWords {
         allWords.putAll(wordsList);
     }
 
-    /*
+    /**
      * Recursive function that will recurse through the different grid positions we can travel to in order
      * to find new legal words that can be found given the current boggle grid
      *
      * @param currRow The current row we are at
      * @param currCol The current column we are at
-     * @param dimensions The length/width of the grid
      * @param currWord The current word we have
-     * @param wordsList A mutable list of all legal words that we have found so far
      * @param listOfPosition A mutable list in the order of positions where we have been so far
-     * @param boggleDict A dictionary of legal words
-     * @param boggleGrid A boggle grid, with a letter at each position on the grid
      *
      * @return Map<String,ArrayList<Position>> A list of all legal words that we have found so far
      */
