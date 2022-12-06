@@ -150,44 +150,63 @@ public class HumanPlayer extends Player {
      * This method generates the specific type of hint asked by the player.
      *@return The hint for the player.
      */
-    public String askHints() {
-        if (this.hintcounter > 5) {
+    public void askHints() {
+        if (this.hintcounter >= 5) {
             System.out.println("Sorry you are out of hints, You cannot take anymore in this round");
-            return null;
+            return;
         }
         Scanner sc = new Scanner(System.in);
         String hint;
         System.out.println("What type of hint do you want? Press \"LH\" for Letter Hints and \"MH\" for Meaning Hint");
         hint = sc.nextLine().toLowerCase();
-        ArrayList<String> words = new ArrayList<>(this.allWords.keySet());
+        Map<String,ArrayList<Position>> lowerCaseMap = new HashMap<>(this.allWords.size());
+        for (Map.Entry<String, ArrayList<Position>> entry : this.allWords.entrySet()) {
+            lowerCaseMap.put(entry.getKey().toLowerCase(), entry.getValue());
+        }
+        ArrayList<String> words = new ArrayList<>(lowerCaseMap.keySet());
         TreeSet<String> setofWords = new TreeSet<>(words);
         Random r = new Random();
+        String randomWordFromGrid;
+        Dictionary dict=new Dictionary(setofWords);
         if (hint.equals("lh")) {
             this.hintcounter += 1;
             this.score -= 1;
-            String randomWordFromGrid;
-            do {
+            System.out.println("your Score for Testing purpose:"+ this.score);
+            //String randomWordFromGrid;
+            while(true){
                 randomWordFromGrid = words.get(r.nextInt(words.size()));
-            } while (playerWords.contains(randomWordFromGrid));
-            LetterHints letterHint = new LetterHints(new Dictionary(setofWords));
-            return letterHint.getHint(randomWordFromGrid);
+                if(!playerWords.contains(randomWordFromGrid))
+                    break;
+                words.remove(randomWordFromGrid);
+            }
+            LetterHints letterHint = new LetterHints(dict);
+            String hints= letterHint.getHint(randomWordFromGrid);
+            System.out.println("Your Hint is:"+ hints+"   "+ "Of length "+hints.length());
+            return;
         } else if (hint.equals("mh")) {
             this.hintcounter += 1;
             this.score -= 1;
-            MeaningHints meaningHint = new MeaningHints(new Dictionary(setofWords));
-            String randomWordFromGrid;
+            System.out.println("your Score for Testing purpose:"+ this.score);
+            MeaningHints meaningHint = new MeaningHints(dict);
+            //String randomWordFromGrid;
             while (true) {
                 randomWordFromGrid = words.get(r.nextInt(words.size()));
                 if (!playerWords.contains(randomWordFromGrid)) {
-                    if (meaningHint.getHint(randomWordFromGrid) != null) {
+                    if (!meaningHint.getHint(randomWordFromGrid).equals("")) {
                         break;
                     }
                 }
+                if(words.isEmpty()){
+                    System.out.println("Sorry, no more hints available");
+                    return;}
+                words.remove(randomWordFromGrid);
             }
-            return meaningHint.getHint(randomWordFromGrid);
+            String hints= meaningHint.getHint(randomWordFromGrid);
+            System.out.println("Your meaning hint is:"+hints);
+            //meaningHint.getHint(randomWordFromGrid);
+            return;
         }
         System.out.println("Invalid Input");
-        return null;
     }
 
 }

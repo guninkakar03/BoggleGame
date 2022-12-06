@@ -25,10 +25,10 @@ public class LetterHints extends Hints {
         String res="";
         res+=word.charAt(0);
         for(int i=1;i<=numberofDashes;i++){
-            res+="_ ";
+            res+=" _ ";
         }
         res+=word.charAt(len-1);
-        System.out.println("Your Hint is:"+ res+"   "+ "Of length "+len);
+
         return res;
     }
 }

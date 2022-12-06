@@ -1,6 +1,7 @@
 package boggle;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.TreeSet;
 
@@ -16,9 +17,10 @@ public class dictionaryTest {
         t1.add("brain");
         t1.add("enzyme");
         t1.add("perch");
+        t1.add("hand");
         Dictionary dict = new Dictionary(t1);
-        assertEquals(dict.get_word_meanings().size(),t1.size());
-        HashMap<String,String> wordmeaning=dict.get_word_meanings();
+        assertEquals(dict.getWordMeanings().size(),t1.size());
+        HashMap<String, String> wordmeaning=dict.getWordMeanings();
         System.out.println(wordmeaning);
     }
     @Test
