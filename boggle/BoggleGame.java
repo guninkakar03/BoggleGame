@@ -25,6 +25,7 @@ public class BoggleGame {
      */
     public InputReader reader;
 
+
     /**
      * Hold the shape of the board
      */
@@ -33,7 +34,7 @@ public class BoggleGame {
     /**
      * Hold the board dimensions
      */
-    public int[] boardDimensions;
+    public int[] boardDimensions = new int[2];
 
     /**
      * Hold whether or not dyslexia mode is turned on
@@ -272,13 +273,9 @@ public class BoggleGame {
         String letters = this.strategy.execute(boardSize, this.dyslexiaMode);
 
         //Initialize the grid based on what type of grid the user chose
-        if (boardShape.equals("rectangle")) {
-            this.board = new RectangleGrid(boardDimensions[0], boardDimensions[1], this.dyslexiaMode);
-        } else if (boardShape.equals("diamond")) {
-            this.board = new DiamondGrid(5, 5, this.dyslexiaMode);
-        } else {
-            this.board = new TriangleGrid(5, 3, this.dyslexiaMode);
-        }
+        GridFactory factory = new GridFactory();
+        this.board = factory.makeGrid(this.boardShape, this.boardDimensions[0],this.boardDimensions[1],this.dyslexiaMode);
+
         this.board.initializeBoard(letters);
         startGame();
 
