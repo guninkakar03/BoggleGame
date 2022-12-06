@@ -148,7 +148,6 @@ public class BoggleGame {
             findAllWords findAllWords1 = new findAllWords(board,dictionary);
             findAllWords1.findWords();
             //Step 3: Instantiate new FindAllWords class
-            //FindAllWords findAllWords = new FindAllWords(this.board);
             Map<String, ArrayList<Position>> allWords = findAllWords1.allWords;
             System.out.println(allWords.keySet());
 
