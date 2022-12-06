@@ -5,9 +5,6 @@ import java.util.*;
 
 public class HumanPlayer extends Player {
 
-
-    //***Human ids or names???*****************
-
     /**
      * The board on which boggle game is played.
      */
@@ -30,18 +27,21 @@ public class HumanPlayer extends Player {
     /**
      * All the possible combination of words present on the board.
      */
-
     public Map<String, ArrayList<Position>> allWords;
+
     /**
      * Number of hints the Humanplayer has taken.
      */
     private int hintcounter;
 
-    /* Human Player constructor
+    /**
+     * Human Player constructor
      * ----------------------------
      * The constructor of the HumanPlayer initialise the score,
      * and all the valid words on the board.
      *
+     * @param allWords all of the possible words
+     * @param board the current board of letters
      */
     public HumanPlayer(Map<String, ArrayList<Position>> allWords, Grid board) {
         super(allWords);
@@ -53,7 +53,7 @@ public class HumanPlayer extends Player {
     }
 
 
-    /*
+    /**
      * This method helps to implement the rounds played by the Human.
      * This method prints out the board, and prompts the player for a word.
      * If the addWords then try to add the word to the list of words that player guessed.
@@ -67,11 +67,11 @@ public class HumanPlayer extends Player {
         while(keepPlaying) {
             String word = "";
             System.out.println(board); //change to the display Board Command
-            System.out.println("Enter Word or h for hints:");
+            System.out.println("Enter Word or -hints (h) for hints:");
             word = scanner.nextLine();
             if (word == ""){
                 keepPlaying = false;
-            } else if (word.equalsIgnoreCase("h")){
+            } else if (word.equalsIgnoreCase("h") || word.equalsIgnoreCase("-hints")){
                 this.askHints();
             } else {
                 this.addWord(word.toUpperCase());
@@ -81,7 +81,7 @@ public class HumanPlayer extends Player {
     }
 
 
-    /*
+    /**
      * This method acts as helper method to the makeMove().
      * The addWords method takes the word input by the user and checks
      *  - if it is a valid word, and
@@ -89,7 +89,7 @@ public class HumanPlayer extends Player {
      * Once,the condition is satisfied, then the word is added to the list
      * else an appropriate message is displayed.
      *
-     * @param String representation of the word that the user has guessed
+     * @param word representation of the word that the user has guessed
      *
      */
     @Override
@@ -105,18 +105,18 @@ public class HumanPlayer extends Player {
     }
 
 
-    /*
+    /**
      * This method helps to set the score of the player,
      * whenever prompted by the GameStats
      *
-     * @param An integer representation of the score.
+     * @param score integer representation of the score.
      *
      */
     public void setScore(int score){
         this.score = score;
     }
 
-    /*
+    /**
      * This getter method returns the list of all
      * the words that the player has found.
      *
@@ -128,7 +128,7 @@ public class HumanPlayer extends Player {
     }
 
 
-    /*
+    /**
      * This getter method returns the score of the player
      *
      * @return an integer representation of the score
@@ -138,14 +138,15 @@ public class HumanPlayer extends Player {
         return this.score;
     }
 
-    /*
+    /**
      * This method re-sets the score of the player.
      *
      */
     public void resetScore(){
         this.score = 0;
     }
-    /*
+
+    /**
      * This method generates the specific type of hint asked by the player.
      *@return The hint for the player.
      */
