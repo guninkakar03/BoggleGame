@@ -113,7 +113,7 @@ public class HumanPlayer extends Player {
      *
      */
     public void setScore(int score){
-        this.score = score;
+        this.score += score;
     }
 
     /*
@@ -179,8 +179,7 @@ public class HumanPlayer extends Player {
                 words.remove(randomWordFromGrid);
             }
             LetterHints letterHint = new LetterHints(dict);
-            String hints= letterHint.getHint(randomWordFromGrid);
-            System.out.println("Your Hint is:"+ hints+"   "+ "Of length "+hints.length());
+            letterHint.getHint(randomWordFromGrid);
             return;
         } else if (hint.equals("mh")) {
             this.hintcounter += 1;

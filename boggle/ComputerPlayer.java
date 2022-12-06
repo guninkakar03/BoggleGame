@@ -89,7 +89,7 @@ public class ComputerPlayer extends Player{
      *
      */
     public void setScore(int score){
-        this.score = score;
+        this.score += score;
     }
 
     /*
