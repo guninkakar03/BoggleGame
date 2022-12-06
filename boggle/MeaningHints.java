@@ -22,7 +22,6 @@ public class MeaningHints extends Hints{
      */
     public String getHint(String word){
       String res= this.dict.getWordMeanings().get(word);
-        //System.out.println("Your Meaning hint is:"+ res);
         return res;
     }
 }
