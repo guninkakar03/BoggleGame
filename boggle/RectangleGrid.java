@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Objects;
 
+/**
+ * This class is the factory that produces Rectangle shaped grid.
+ */
 public class RectangleGrid extends Grid {
 
     // width of the Boggle Board
@@ -12,7 +15,7 @@ public class RectangleGrid extends Grid {
     // height of the Boggle Board
     private int height;
 
-    // boolean of whether or not letters in board should be spaced
+    // boolean of whether letters in board should be spaced
     private boolean dyslexiaMode;
 
     // 2D array representation of the Boggle Board
@@ -25,7 +28,7 @@ public class RectangleGrid extends Grid {
         this.board = new char[height][width];
     }
 
-    /*
+    /**
      * Assigns a letter in the string of letters to each grid position
      * Letters should be assigned left to right, top to bottom
      *
@@ -42,6 +45,14 @@ public class RectangleGrid extends Grid {
         }
     }
 
+    /**
+     * This method looks up all the possible neighbours on the board, from a particular position
+     * on the board.
+     *
+     * @param int row which represents the row
+     * @param int col which represents the column.
+     * @return ArrayList<Position> This represents all the positions ard row and col where letters exits.
+     */
     @Override
     public ArrayList<Position> getNeighbours(int row, int col){
 
@@ -71,28 +82,28 @@ public class RectangleGrid extends Grid {
         return travelTo;
     }
 
-    /*
+    /**
      * @return int the number of rows on the board
      */
     public int numRows() {
         return this.height;
     }
 
-    /*
+    /**
      * @return int the number of columns on the board (assumes square grid)
      */
     public int numCols() {
         return this.width;
     }
 
-    /*
+    /**
      * @return char the character at a given grid position
      */
     public char getCharAt(int row, int col) {
         return this.board[row][col];
     }
 
-    /*
+    /**
      * Provide a nice-looking string representation of the grid,
      * so that the user can easily scan it for words.
      *
