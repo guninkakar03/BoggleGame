@@ -21,6 +21,13 @@ public class RectangleGrid extends Grid {
     // 2D array representation of the Boggle Board
     private char[][] board;
 
+    /**
+     * The constructor of RectangleBoard
+     * __________________________________
+     * @param width the width of the board
+     * @param height the height of the board
+     * @param dyslexiaMode the mode of accessibility
+     */
     public RectangleGrid(int width, int height, boolean dyslexiaMode) {
         this.width = width;
         this.height = height;
