@@ -177,9 +177,11 @@ public class HumanPlayer extends Player {
                 randomWordFromGrid = words.get(r.nextInt(words.size()));
                 if(!playerWords.contains(randomWordFromGrid))
                     break;
+                words.remove(randomWordFromGrid);
             }
             LetterHints letterHint = new LetterHints(dict);
-            letterHint.getHint(randomWordFromGrid);
+            String hints= letterHint.getHint(randomWordFromGrid);
+            System.out.println("Your Hint is:"+ hints+"   "+ "Of length "+hints.length());
             return;
         } else if (hint.equals("mh")) {
             this.hintcounter += 1;
@@ -194,12 +196,13 @@ public class HumanPlayer extends Player {
                         break;
                     }
                 }
-                words.remove(randomWordFromGrid);
                 if(words.isEmpty()){
                     System.out.println("Sorry, no more hints available");
                     return;}
+                words.remove(randomWordFromGrid);
             }
-            System.out.println("Your meaning hint is:"+meaningHint.getHint(randomWordFromGrid));
+            String hints= meaningHint.getHint(randomWordFromGrid);
+            System.out.println("Your meaning hint is:"+hints);
             //meaningHint.getHint(randomWordFromGrid);
             return;
         }
