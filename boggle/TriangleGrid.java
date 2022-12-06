@@ -5,9 +5,8 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Vector;
 
-/*
- * There is a pre-condition that the board will be formed only when
- * height is equal to the width.
+/**
+ * This class is the factory that produces Triangle shaped grid.
  */
 
 public class TriangleGrid extends Grid {
@@ -18,7 +17,7 @@ public class TriangleGrid extends Grid {
     // height of the Boggle Board
     private int height;
 
-    // boolean of whether or not letters in board should be spaced
+    // boolean of whether letters in board should be spaced
     private boolean dyslexiaMode;
 
     // 2D array representation of the Boggle Board
@@ -31,7 +30,7 @@ public class TriangleGrid extends Grid {
         this.board = new char[height][width];
     }
 
-    /*
+    /**
      * Assigns a letter in the string of letters to each grid position
      * Letters should be assigned left to right, top to bottom
      *
@@ -71,6 +70,12 @@ public class TriangleGrid extends Grid {
 
     }
 
+    /**
+     * This is a helper function for the initializeBoard.
+     *
+     * @param letter for a particular row of grid.
+     * @return String which spaces to block off places on the board to form a shape.
+     */
     public String add_space(int width, String letter){
         if(letter.length() == width){
             return letter;
@@ -85,6 +90,14 @@ public class TriangleGrid extends Grid {
         return new_letter;
     }
 
+    /**
+     * This method looks up all the possible neighbours on the board, from a particular position
+     * on the board.
+     *
+     * @param int row which represents the row
+     * @param int col which represents the column.
+     * @return ArrayList<Position> This represents all the positions ard row and col where letters exits.
+     */
     public ArrayList<Position> getNeighbours(int row, int col) {
 
         ArrayList<Position> travelTo = new ArrayList<>();
@@ -113,28 +126,28 @@ public class TriangleGrid extends Grid {
         return travelTo;
     }
 
-    /*
+    /**
      * @return int the number of rows on the board
      */
     public int numRows() {
         return this.height;
     }
 
-    /*
+    /**
      * @return int the number of columns on the board (assumes square grid)
      */
     public int numCols() {
         return this.width;
     }
 
-    /*
+    /**
      * @return char the character at a given grid position
      */
     public char getCharAt(int row, int col) {
         return this.board[row][col];
     }
 
-    /*
+    /**
      * Provide a nice-looking string representation of the grid,
      * so that the user can easily scan it for words.
      *
