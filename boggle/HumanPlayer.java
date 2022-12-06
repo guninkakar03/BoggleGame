@@ -74,7 +74,7 @@ public class HumanPlayer extends Player {
             } else if (word.equalsIgnoreCase("h")){
                 this.askHints();
             } else {
-                this.addWord(word);
+                this.addWord(word.toUpperCase());
             }
         }
 
@@ -94,7 +94,6 @@ public class HumanPlayer extends Player {
      */
     @Override
     public void addWord(String word){
-        word = word.toUpperCase();
         if (playerWords.contains(word)){
             System.out.println("You have already guesses this word!!");
         } else if (allWords.containsKey(word)){

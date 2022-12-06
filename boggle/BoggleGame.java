@@ -261,29 +261,26 @@ public class BoggleGame {
      */
     public void setupGame() {
         int boardSize;
-        while (true) {
-            reader.getGameSettings();
-            if (this.boardShape == "diamond") {
-                boardSize = 13;
-            } else if (this.boardShape == "triangle") {
-                boardSize = 9;
-            } else { // board is rectangular
-                boardSize = this.boardDimensions[0] * this.boardDimensions[1];
-            }
-            String letters = this.strategy.execute(boardSize, this.dyslexiaMode);
-
-            //Initialize the grid based on what type of grid the user chose
-            if (boardShape.equals("rectangle")) {
-                this.board = new RectangleGrid(boardDimensions[0], boardDimensions[1], this.dyslexiaMode);
-            } else if (boardShape.equals("diamond")) {
-                this.board = new DiamondGrid(5, 5, this.dyslexiaMode);
-            } else {
-                this.board = new TriangleGrid(5, 3, this.dyslexiaMode);
-            }
-            this.board.initializeBoard(letters);
-            startGame();
-
-
+        reader.getGameSettings();
+        if (this.boardShape == "diamond") {
+            boardSize = 13;
+        } else if (this.boardShape == "triangle") {
+            boardSize = 9;
+        } else { // board is rectangular
+            boardSize = this.boardDimensions[0] * this.boardDimensions[1];
         }
+        String letters = this.strategy.execute(boardSize, this.dyslexiaMode);
+
+        //Initialize the grid based on what type of grid the user chose
+        if (boardShape.equals("rectangle")) {
+            this.board = new RectangleGrid(boardDimensions[0], boardDimensions[1], this.dyslexiaMode);
+        } else if (boardShape.equals("diamond")) {
+            this.board = new DiamondGrid(5, 5, this.dyslexiaMode);
+        } else {
+            this.board = new TriangleGrid(5, 3, this.dyslexiaMode);
+        }
+        this.board.initializeBoard(letters);
+        startGame();
+
     }
 }
