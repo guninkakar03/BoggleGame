@@ -171,7 +171,6 @@ public class HumanPlayer extends Player {
         if (hint.equals("lh")) {
             this.hintcounter += 1;
             this.score -= 1;
-            System.out.println("your Score for Testing purpose:"+ this.score);
             //String randomWordFromGrid;
             while(true){
                 randomWordFromGrid = words.get(r.nextInt(words.size()));
@@ -185,7 +184,6 @@ public class HumanPlayer extends Player {
         } else if (hint.equals("mh")) {
             this.hintcounter += 1;
             this.score -= 1;
-            System.out.println("your Score for Testing purpose:"+ this.score);
             MeaningHints meaningHint = new MeaningHints(dict);
             //String randomWordFromGrid;
             while (true) {
