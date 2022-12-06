@@ -262,24 +262,22 @@ public class BoggleGame {
      */
     public void setupGame() {
         int boardSize;
-        while (true) {
-            reader.getGameSettings();
-            if (this.boardShape == "diamond") {
-                boardSize = 13;
-            } else if (this.boardShape == "triangle") {
-                boardSize = 9;
-            } else { // board is rectangular
-                boardSize = this.boardDimensions[0] * this.boardDimensions[1];
-            }
-            String letters = this.strategy.execute(boardSize, this.dyslexiaMode);
-
-            //Initialize the grid based on what type of grid the user chose
-            GridFactory factory = new GridFactory();
-            this.board = factory.makeGrid(this.boardShape, this.boardDimensions[0],this.boardDimensions[1],this.dyslexiaMode);
-            this.board.initializeBoard(letters);
-            startGame();
-
-
+        reader.getGameSettings();
+        if (this.boardShape == "diamond") {
+            boardSize = 13;
+        } else if (this.boardShape == "triangle") {
+            boardSize = 9;
+        } else { // board is rectangular
+            boardSize = this.boardDimensions[0] * this.boardDimensions[1];
         }
+        String letters = this.strategy.execute(boardSize, this.dyslexiaMode);
+
+        //Initialize the grid based on what type of grid the user chose
+        GridFactory factory = new GridFactory();
+        this.board = factory.makeGrid(this.boardShape, this.boardDimensions[0],this.boardDimensions[1],this.dyslexiaMode);
+
+        this.board.initializeBoard(letters);
+        startGame();
+
     }
 }

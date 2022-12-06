@@ -109,7 +109,7 @@ public class findAllWords {
     private Map<String,ArrayList<Position>> recursiveFunction(int currRow, int currCol, String currWord, ArrayList<Position> listOfPosition){
 
         if(currWord.length() >= 4 && !(allWords.containsKey(currWord)) && dict.containsWord(currWord)){
-            allWords.put(currWord, listOfPosition);
+            allWords.put(currWord.toUpperCase(), listOfPosition);
         }
 
         //we have the list of where we can go to
@@ -122,7 +122,7 @@ public class findAllWords {
             String newWord =  currWord + newLetter;
 
             //check if the word with the new letter is a prefix, if yes perform recursion
-            if(dict.isPrefix(newWord)){
+            if(dict.isPrefix(newWord) && !this.containsPosition(newPos, listOfPosition)){
                 ArrayList<Position> newPositionList = new ArrayList<>(listOfPosition);//copy the list and add the new extra position
 
                 newPositionList.add(new Position(newPos.getRow(),newPos.getCol()));// we add the new position pos
@@ -135,6 +135,22 @@ public class findAllWords {
         }
 
         return allWords;
+    }
+
+    /**
+     * Check that the current position is not in the list of positions.
+     *
+     * @param currPos the current position.
+     * @param listOfPositions the list of positions.
+     * @return whether or not the position is in the list of positions
+     */
+    private boolean containsPosition(Position currPos, ArrayList<Position> listOfPositions){
+        for(Position pos: listOfPositions){
+            if(pos.getCol() == currPos.getCol() && pos.getRow() == currPos.getRow()){
+                return true;
+            }
+        }
+        return false;
     }
 
 //    /**
