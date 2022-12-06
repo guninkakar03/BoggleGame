@@ -31,7 +31,7 @@ public class OutputWriter {
         System.out.println("and you can't use a letter twice in any single word. Your points ");
         System.out.println("will be based on word length: a 4-letter word is worth 1 point, 5-letter");
         System.out.println("words earn 2 points, and so on.");
-        System.out.println("PLEASE NOTE: IF A TAKES A HINT THEN THEIR SCORE WILL GET DECREASED BY 1 POINT.");
+        System.out.println("PLEASE NOTE: IF A PLAYER TAKES A HINT THEN THEIR SCORE WILL GET DECREASED BY 1 POINT.");
         System.out.println("The Player cannot take more than 5 hints in total.");
     }
 
