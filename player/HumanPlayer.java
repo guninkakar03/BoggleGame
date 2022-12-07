@@ -162,6 +162,10 @@ public class HumanPlayer extends Player {
      * @return The hint for the player.
      */
     public void askHints() {
+        if(this.allWords.keySet().isEmpty()){
+            System.out.println("There are no hints available for this grid.");
+            return;
+        }
         if (this.hintcounter >= 5) {
             System.out.println("Sorry you are out of hints, You cannot take anymore in this round");
             return;
@@ -185,7 +189,7 @@ public class HumanPlayer extends Player {
             //String randomWordFromGrid;
             while(true){
                 randomWordFromGrid = words.get(r.nextInt(words.size()));
-                if(!playerWords.contains(randomWordFromGrid))
+                if(!playerWords.contains(randomWordFromGrid.toUpperCase()))
                     break;
                 words.remove(randomWordFromGrid);
             }
@@ -199,7 +203,7 @@ public class HumanPlayer extends Player {
             //String randomWordFromGrid;
             while (true) {
                 randomWordFromGrid = words.get(r.nextInt(words.size()));
-                if (!playerWords.contains(randomWordFromGrid)) {
+                if (!playerWords.contains(randomWordFromGrid.toUpperCase())) {
                     if (!meaningHint.getHint(randomWordFromGrid).equals("")) {
                         break;
                     }
