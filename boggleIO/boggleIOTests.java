@@ -26,8 +26,8 @@ public class boggleIOTests {
     // Testing that inputCommand is properly set in InputReader
     @Test
     void InputReaderCommand() {
-        InputReader ir = new InputReader(new BoggleGame());
-        ir.setInputCommand(new ChangeDyslexiaModeCommand(new BoggleGame(), true));
+        InputReader ir = new InputReader( BoggleGame.getInstance());
+        ir.setInputCommand(new ChangeDyslexiaModeCommand(BoggleGame.getInstance(), true));
         assertTrue(ir.getInputCommand() instanceof ChangeDyslexiaModeCommand);
     }
 

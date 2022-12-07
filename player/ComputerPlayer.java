@@ -1,16 +1,20 @@
-package boggle;
+package player;
+
+import boggle.Position;
+import player.HumanPlayer;
+import player.Player;
 
 import java.util.*;
 
-public class ComputerPlayer extends Player{
+/**
+ * The ComputerPlayer Class which is a child class of Player
+ * It will contain methods and attributes to allow the computer to play the game and retain information
+ *
+ */
+public class ComputerPlayer extends Player {
 
     /**
-     * The grid on which the Boggle game is placed.
-     */
-    private Grid board;
-
-    /**
-     * Set of words the player finds in a given round.
+     * The set of words the player finds in a given round.
      */
     private Set<String> playerWords = new HashSet<String>();
 
@@ -20,7 +24,7 @@ public class ComputerPlayer extends Player{
     private Map<String, ArrayList<Position>> allWords;
 
     /**
-     * scanner used to interact with the user via console.
+     * Scanner used to interact with the user via console.
      */
     public Scanner scanner;
 
@@ -34,10 +38,13 @@ public class ComputerPlayer extends Player{
      */
     private int score;
 
-    /* Computer Player constructor
+    /** Computer Player constructor
      * ----------------------------
      * The constructor of the ComputerPlayer initialise the score, take in the opponent of the
      * computer and all the valid words on the board.
+     *
+     * @param allWords All the valid words mapped to their list of positions
+     * @param opponent The opponent that the computer will be playing against
      */
     public ComputerPlayer(Map<String, ArrayList<Position>> allWords, HumanPlayer opponent) {
         super(allWords);
@@ -46,7 +53,7 @@ public class ComputerPlayer extends Player{
         this.opponent = opponent;
     }
 
-    /*
+    /**
      * This method helps to implement the rounds played by the Computer.
      * Computer finds all the words that user didn't find on its turn.
      *
@@ -56,18 +63,18 @@ public class ComputerPlayer extends Player{
         addWord();
     }
 
-    /*
+    /**
      * This method acts as helper method to the makeMove().
      * addWord() finds all the words that the opponent didn't find
      * and assigns it is the computer
-     *
+     * @param word The new word that will be added
      */
     @Override
     void addWord(String word) {
         throw new UnsupportedOperationException();
     }
 
-    /*
+    /**
      * This method acts as helper method to the makeMove().
      * addWord() finds all the words that the opponent didn't find
      * and assigns it is the computer
@@ -81,18 +88,18 @@ public class ComputerPlayer extends Player{
         }
     }
 
-    /*
+    /**
      * This method helps to set the score of the player,
      * whenever prompted by the GameStats
      *
-     * @param An integer representation of the score.
+     * @param score  An integer representation of the score.
      *
      */
     public void setScore(int score){
-        this.score = score;
+        this.score += score;
     }
 
-    /*
+    /**
      * This getter method returns the list of all
      * the words that the player has found.
      *
@@ -103,7 +110,7 @@ public class ComputerPlayer extends Player{
         return this.playerWords;
     }
 
-    /*
+    /**
      * This getter method returns the score of the player
      *
      * @return an integer representation of the score
@@ -113,7 +120,7 @@ public class ComputerPlayer extends Player{
         return this.score;
     }
 
-    /*
+    /**
      * This method re-sets the score of the player.
      *
      */

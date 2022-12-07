@@ -1,22 +1,43 @@
 package boggle;
 
-import boggle.BoggleGrid;
-import boggle.Position;
+import dictionary.Dictionary;
+import grid.Grid;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * The findAllWords interface that FindAllWordsStrategy will implement
  */
 public class findAllWords {
 
-    /*
+    /**
+     * all the valid words that can be found on the grid mapped to their list of positions
+     */
+    public Map<String,ArrayList<Position>> allWords;
+
+    /**
+     * The grid that the game will be played on
+     */
+    public Grid grid;
+
+    /**
+     * The dictionary that will be referenced by the grid
+     */
+    public Dictionary dict;
+    public findAllWords(Grid grid, Dictionary dict){
+        this.grid = grid;
+        this.allWords = new HashMap<>();
+        this.dict = dict;
+    }
+
+    /**
      * This should be a recursive function that finds all valid words on the boggle board.
      * Every word should be valid (i.e. in the boggleDict) and of length 4 or more.
      * Words that are found should be entered into the allWords HashMap.  This HashMap
      * will be consulted as we play the game.
+     *
      *
      * Note that this function will be a recursive function.  You may want to write
      * a wrapper for your recursion. Note that every legal word on the Boggle grid will correspond to
@@ -36,85 +57,103 @@ public class findAllWords {
      *      if they can be used to form a valid word in the dictionary.
      * ---- Food for thought: If there are N Positions on the grid, how many possible lists of positions
      *      might we need to evaluate?
-     *
-     * @param allWords A mutable list of all legal words that can be found, given the boggleGrid grid letters
-     * @param boggleDict A dictionary of legal words
-     * @param boggleGrid A boggle grid, with a letter at each position on the grid
      */
-    private void findAllWords(Map<String,ArrayList<Position>> allWords, Dictionary boggleDict, BoggleGrid boggleGrid) {
-        // Created 2d boolean array to keep track of which letters have been visited
-        boolean[][] visited = new boolean[boggleGrid.numRows()][boggleGrid.numCols()];
-        // Iterate each letter, and recursively find all words that begin with that letter
-        for(int i = 0; i < visited.length; i++){
-            for (int j = 0; j < visited.length; j++){
-                String startStr = Character.toString(boggleGrid.getCharAt(i, j)).toUpperCase();
-                ArrayList<Position> positions = new ArrayList<Position>();
-                positions.add(new Position(i, j));
-                recursePositions(startStr, positions, visited, boggleDict, boggleGrid, allWords);
-            }
-        }
-    }
+    public void findWords() {
+        int num_rows = grid.numRows();
+        int num_cols = grid.numCols();
+        Map<String,ArrayList<Position>> wordsList = new HashMap<>(); //make new map to hold all our curr words
 
-    /*
-     * Recursive function to find all words starting with a given letter
-     * Recursively adds neighboring letters to string, and then adds the string to allWords if it is a valid word
-     * Stops recursing once all neighboring letters have been visited, or when the current string is not a possible word
-     *
-     * @param str A string representation of all the letters that have been visited
-     * @param positions A list of positions for each letter that has been visited
-     * @param visited A 2d array of booleans to track which letters have been visited
-     * @param allWords A mutable list of all legal words that can be found, given the boggleGrid grid letters
-     * @param boggleDict A dictionary of legal words
-     * @param boggleGrid A boggle grid, with a letter at each position on the grid
-     */
-    private void recursePositions(String str, ArrayList<Position> positions, boolean[][] visited, Dictionary boggleDict, BoggleGrid boggleGrid, Map<String,ArrayList<Position>> allWords){
-        // clone visited so that it it not aliased with the original array
-        boolean[][] newVisited = new boolean[visited.length][visited.length];
-        for(int i = 0; i < newVisited.length; i++){
-            newVisited[i] = visited[i].clone();
-        }
-        // Get the most recent position by getting the last value in positions
-        Position currPos = positions.get(positions.size() - 1);
-        newVisited[currPos.row][currPos.col] = true;
-        // Check if the current string is a word, and add it to allWords if it is
-        if(boggleDict.containsWord(str) && str.length() >= 4){
-            allWords.put(str, positions);
-        }
-        // Continue adding letters to the string if the string is a prefix, and there are still letters to visit
-        if(boggleDict.isPrefix(str)){
-            for(int i = Math.max(currPos.row - 1, 0); i <= Math.min(currPos.row + 1, visited.length - 1); i++){
-                for(int j = Math.max(currPos.col - 1, 0); j <= Math.min(currPos.col + 1, visited.length - 1); j++){
-                    if(newVisited[i][j] == false){
-                        String newStr = str + Character.toString(boggleGrid.getCharAt(i, j)).toUpperCase();
-                        ArrayList<Position> newPositions = new ArrayList<Position>();
-                        for(Position pos: positions){
-                            newPositions.add(pos);
-                        }
-                        newPositions.add(new Position(i, j));
-                        recursePositions(newStr, newPositions, newVisited, boggleDict, boggleGrid, allWords);
+        for (int row = 0; row <  num_rows ; row++) {
+            for (int col = 0; col <  num_cols; col++) {
+                ArrayList<Position> listOfPosition = new ArrayList<>(); //the position we are at curr
+                listOfPosition.add(new Position(row,col));//adding the root which is where we start it
+
+                ArrayList<Position> travelTo = this.grid.getNeighbours(row, col); //see where we can travel to
+
+                String startingLetter = Character.toString(this.grid.getCharAt(row,col)); //turn the starting letter to a string and hold the value
+
+
+                //function that given where we can travel to, where can we go which will be a prefix
+                //make into function later
+                for (Position newPos: travelTo) {
+                    char newLetter = grid.getCharAt(newPos.getRow(),newPos.getCol());
+                    String newWord =  startingLetter + newLetter;
+
+                    //check if the word with the new letter is a prefix, if yes perform recursion
+                    if(dict.isPrefix(newWord)){
+                        ArrayList<Position> newPositionList = new ArrayList<>(listOfPosition);//copy the list and add the new extra position
+
+                        newPositionList.add(new Position(newPos.getRow(),newPos.getCol()));// we add the new position pos
+
+                        //run the recursion and return the words we find
+                        Map<String,ArrayList<Position>> temp =  recursiveFunction(newPos.getRow(),newPos.getCol(), newWord , newPositionList);
+                        wordsList.putAll(temp);// we now recurse the new word with a new position and we are at a new position
                     }
+
                 }
+
             }
         }
+
+        allWords.putAll(wordsList);
     }
 
-//    /**
-//     * The grid that will be operated on
-//     */
-//    public BoggleGrid grid = null;
-//    /**
-//     * The hashmap that maps all the different words on the grid to the list of positions
-//     * that we must take to get that words
-//     */
-//    public Map<String, ArrayList<Position>> allWords = null;
-//    /**
-//     * A list of all the possible words on the grid
-//     */
-//    public Set<String> allWordsList = null;
-//
-//    /**
-//     *  Execute a command that will find all the words of a given BoggleGrid.
-//     */
-//    public void execute();
+    /**
+     * Recursive function that will recurse through the different grid positions we can travel to in order
+     * to find new legal words that can be found given the current boggle grid
+     *
+     * @param currRow The current row we are at
+     * @param currCol The current column we are at
+     * @param currWord The current word we have
+     * @param listOfPosition A mutable list in the order of positions where we have been so far
+     *
+     * @return Map<String,ArrayList<Position>> A list of all legal words that we have found so far
+     */
+    private Map<String,ArrayList<Position>> recursiveFunction(int currRow, int currCol, String currWord, ArrayList<Position> listOfPosition){
+
+        if(currWord.length() >= 4 && !(allWords.containsKey(currWord)) && dict.containsWord(currWord)){
+            allWords.put(currWord.toUpperCase(), listOfPosition);
+        }
+
+        //we have the list of where we can go to
+        ArrayList<Position> travelTo = grid.getNeighbours(currRow,currCol);
+
+        //function that given where we can travel to, where can we go which will be a prefix
+        //make into function later****
+        for (Position newPos: travelTo) {
+            char newLetter = grid.getCharAt(newPos.getRow(),newPos.getCol());
+            String newWord =  currWord + newLetter;
+
+            //check if the word with the new letter is a prefix, if yes perform recursion
+            if(dict.isPrefix(newWord) && !this.containsPosition(newPos, listOfPosition)){
+                ArrayList<Position> newPositionList = new ArrayList<>(listOfPosition);//copy the list and add the new extra position
+
+                newPositionList.add(new Position(newPos.getRow(),newPos.getCol()));// we add the new position pos
+
+                // we now recurse the new word with a new position and we are at a new position// we now recurse the new word with a new position and we are at a new position
+                Map<String,ArrayList<Position>> temp =  recursiveFunction(newPos.getRow(),newPos.getCol(), newWord , newPositionList);
+                allWords.putAll(temp);
+            }
+
+        }
+
+        return allWords;
+    }
+
+    /**
+     * Check that the current position is not in the list of positions.
+     *
+     * @param currPos the current position.
+     * @param listOfPositions the list of positions.
+     * @return whether or not the position is in the list of positions
+     */
+    private boolean containsPosition(Position currPos, ArrayList<Position> listOfPositions){
+        for(Position pos: listOfPositions){
+            if(pos.getCol() == currPos.getCol() && pos.getRow() == currPos.getRow()){
+                return true;
+            }
+        }
+        return false;
+    }
 }
 

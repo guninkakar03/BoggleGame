@@ -1,7 +1,9 @@
 package boggleIO;
 
-import boggle.BoggleGrid;
-
+/**
+ * The OutputWriter Class that will display to the user the information they need to play the game
+ *
+ */
 public class OutputWriter {
 
     /**
@@ -9,12 +11,12 @@ public class OutputWriter {
      */
     public void printCommands(){
         System.out.println("Valid Commands:");
-        System.out.println("\t-help : display a list of possible commands (this)");
-        System.out.println("\t-shape : change the shape of the boggle board you wish to play");
-        System.out.println("\t-dyslexia : toggle dyslexia mode");
-        System.out.println("\t-difficulty : change the difficulty of the board");
-        System.out.println("\t-multiplayer : change between single player or multiplayer (2 players)");
-        System.out.println("\t-start : start the boggle game with the current settings");
+        System.out.println("\t-help (-h): display a list of possible commands (this)");
+        System.out.println("\t-shape (-sh): change the shape of the boggle board you wish to play");
+        System.out.println("\t-dyslexia (-dys): toggle dyslexia mode");
+        System.out.println("\t-difficulty (-diff): change the difficulty of the board");
+        System.out.println("\t-multiplayer (-m): change between single player or multiplayer (2 players)");
+        System.out.println("\t-start (-s): start the boggle game with the current settings");
     }
 
     /**
@@ -29,6 +31,8 @@ public class OutputWriter {
         System.out.println("and you can't use a letter twice in any single word. Your points ");
         System.out.println("will be based on word length: a 4-letter word is worth 1 point, 5-letter");
         System.out.println("words earn 2 points, and so on.");
+        System.out.println("PLEASE NOTE: IF A PLAYER TAKES A HINT THEN THEIR SCORE WILL GET DECREASED BY 1 POINT.");
+        System.out.println("The Player cannot take more than 5 hints in total.");
     }
 
     /**
@@ -47,12 +51,5 @@ public class OutputWriter {
         } else {
             System.out.println("\tDyslexia mode is OFF");
         }
-    }
-
-    /**
-     * Print the game board
-     */
-    public void printGameBoard(BoggleGrid board){
-        // loop through each die in the board and print it
     }
 }
