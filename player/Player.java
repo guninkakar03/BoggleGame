@@ -1,8 +1,15 @@
 
-package boggle;
+package player;
+
+import boggle.Hints;
+import boggle.Position;
+import grid.Grid;
 
 import java.util.*;
 
+/**
+ * The Player Abstract Class that will allow an entity to play the Boggle Game
+ */
 public abstract class Player {
     /**
      * The board on which boggle game is played.
@@ -37,7 +44,7 @@ public abstract class Player {
         this.allWords = allWords;
     }
 
-    /*
+    /**
      * This method helps to implement the rounds played by the Player.
      * This method prints out the board, and prompts the player for a word.
      * If the addWords then try to add the word to the list of words that player guessed.
@@ -46,7 +53,7 @@ public abstract class Player {
      */
     abstract void makeMove();
 
-    /*
+    /**
      * This method acts as helper method to the makeMove().
      * The addWords method takes the word input by the user and checks
      *  - if it is a valid word, and
@@ -54,23 +61,23 @@ public abstract class Player {
      * Once,the condition is satisfied, then the word is added to the list
      * else an appropriate message is displayed.
      *
-     * @param String representation of the word that the user has guessed
+     * @param word String representation of the word that the user has guessed
      *
      */
     abstract void addWord(String word);
 
-    /*
+    /**
      * This method helps to set the score of the player,
      * whenever prompted by the GameStats
      *
-     * @param An integer representation of the score.
+     * @param score An integer representation of the score.
      *
      */
     public void setScore(int score) {
-        this.score = score;
+        this.score += score;
     }
 
-    /*
+    /**
      * This getter method returns the list of all
      * the words that the player has found.
      *
@@ -82,7 +89,7 @@ public abstract class Player {
     }
 
 
-    /*
+    /**
      * This getter method returns the score of the player
      *
      * @return an integer representation of the score
@@ -92,7 +99,7 @@ public abstract class Player {
         return this.score;
     }
 
-    /*
+    /**
      * This method re-sets the score of the player.
      *
      */

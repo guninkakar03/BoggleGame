@@ -5,11 +5,11 @@ package boggle;
  */
 public class Position {
     /**
-     * row
+     * The row where the position is
      */    
     public int row;
     /**
-     * column
+     * The column where the position is
      */    
     public int col;
 
@@ -35,6 +35,7 @@ public class Position {
 
    /*
      * Useful getter and setter method for class attributes
+     * Part of Assignment code
      */
     public void setRow(int row) { this.row = row; }
     public void setCol(int col) { this.col = col; }

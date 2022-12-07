@@ -24,6 +24,7 @@ public class StrategyTests {
         int numLetters = 16;
         generateLettersStrategy strategy = new HardLettersStrategy();
         String letters = strategy.execute(numLetters, true);
-        assertTrue(letters.equals(letters.toLowerCase(Locale.ROOT)));
+        assertTrue(letters.equals(letters.toLowerCase()));
     }
 }
+

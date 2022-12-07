@@ -1,4 +1,4 @@
-package boggle;
+package dictionary;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
@@ -47,7 +47,7 @@ public class Dictionary {
         {
             e.printStackTrace();
         }
-        System.out.println("Initialized " + wordcount + " words in the Dictionary.");;
+
     }
 
     /**
@@ -68,7 +68,7 @@ public class Dictionary {
         List<String> csvList = new ArrayList<>();
         File csvFiles = new File("CSV files");
 
-        //loads all of the csv files into the list
+        //loads all the csv files into the list
         if(csvFiles.listFiles() != null){
             for (String csv: csvFiles.list()) {
                 csvList.add(csv);
@@ -85,7 +85,7 @@ public class Dictionary {
         try {
             for (String word: this.word_meaning.keySet()) {
                 for (int i = 0; i < csvList.size(); i++) {
-                        //String first_letter=(String) csvList.get(i).charAt(0)
+
                     if(Character.toLowerCase(csvList.get(i).charAt(0))==word.charAt(0)){
                         //parsing a CSV file into BufferedReader class constructor
                         BufferedReader br = new BufferedReader(new FileReader("CSV Files/"+csvList.get(i)));
@@ -102,10 +102,11 @@ public class Dictionary {
                                 br.readLine();
                             else{
                             String meaning_part = line.substring(line.indexOf(')') + 1, line.length() - indexStart).replace(",", "");
-                            //String checked = word;
+
                             if (wordPart.equals(word.toLowerCase())){
                                 // Populating the dictionary with the word and its meaning.
-                                this.word_meaning.put(word, meaning_part);}
+                                if(this.word_meaning.get(word).equals(""))
+                                    this.word_meaning.put(word, meaning_part);}
                             br.readLine();}
                         }
 
@@ -117,10 +118,10 @@ public class Dictionary {
         {
             e.printStackTrace();
         }
-        System.out.println("Initialized " + wordcount + " words in the Dictionary.");
+
     }
 
-    /* 
+    /**
      * Checks to see if a provided word is in the dictionary.
      *
      * @param word  The word to check
@@ -129,7 +130,8 @@ public class Dictionary {
     public boolean containsWord(String word) {
         return this.legalWords.contains(word.toLowerCase());
     }
-    /* 
+
+    /**
      * Checks to see if a provided string is a prefix of any word in the dictionary.
      *
      * @param str  The string to check
@@ -142,10 +144,10 @@ public class Dictionary {
         }
         return this.legalWords.ceiling(str).contains(str);
     }
-    /*
+    /**
      * Returns the updated Hashmap containing the word as keys and meaning as the meanings of the wordlist
      */
-    public HashMap<String,String> get_word_meanings(){
+    public HashMap<String,String> getWordMeanings(){
         return this.word_meaning;
     }
 

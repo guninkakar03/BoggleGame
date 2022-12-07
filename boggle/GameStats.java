@@ -1,10 +1,17 @@
 package boggle;
 
+import grid.Grid;
+import player.ComputerPlayer;
+import player.HumanPlayer;
+import player.Player;
+
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+/**
+ * The GameStats class that will conatain the statisitcs for the game being played
+ */
 public class GameStats {
 
     /**
@@ -46,10 +53,13 @@ public class GameStats {
      */
     public int player2TotalScore;
 
-    /*
+    /**
      * GameStats Constructor
      * ______________________
      * This initializes the rounds, player1TotalScore,and player2TotalScore by setting it to zero.
+     * @param board the board that the game will be played on
+     * @param player1 one of the player that will be playing the game
+     * @param player2 the second player that will be playing the game
      */
     public GameStats(Grid board, HumanPlayer player1, Player player2){
         this.round = 0;
@@ -61,7 +71,7 @@ public class GameStats {
     }
 
 
-    /*
+    /**
      * This function ends that particular round of the game.
      * This function also displays Total score that each player has
      * received for that particular round.
@@ -94,7 +104,7 @@ public class GameStats {
     }
 
 
-    /*
+    /**
      * This function ends that particular round of the game.
      * This function also displays scores that each player has
      * received for that particular round.
@@ -116,7 +126,7 @@ public class GameStats {
 
     }
 
-    /*
+    /**
      * This method assigns the required score for each player in the game.
      * The scoring strategy for a HumanPlayer V/S ComputerPlayer is done in such a manner
      * that the score of ComputerPlayer is always based on the words that HumanPlayer has not guessed.
@@ -156,14 +166,14 @@ public class GameStats {
 
     }
 
-    /*
+    /**
      * This method is a helper function of the assignScore() method.
      * Score of 1 is given for every word of consisting of 4 letters.
      * Words of length greater than 4 gets a score higher by the
      * number of letters more than 4.
      *
-     * @param: words A list words against which score is needed.
-     * @return: An Integer representation of the score.
+     * @param words A list words against which score is needed.
+     * @return An Integer representation of the score.
      */
     public int doScoreCalculation(ArrayList<String> words){
         int score = 0;
@@ -173,8 +183,10 @@ public class GameStats {
         return score;
     }
 
-    /*
+    /**
      * Returns the current round at which the game is
+     *
+     * @return the curent round
      */
     public int getRound(){
         return this.round;

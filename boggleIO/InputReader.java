@@ -5,6 +5,9 @@ import java.util.Scanner;
 import boggle.BoggleGame;
 import commands.*;
 
+/**
+ * The InputReader Class that will be able to take in inputs to change how the game will be played
+ */
 public class InputReader {
 
     /**
@@ -188,62 +191,27 @@ public class InputReader {
             String input = this.scanner.nextLine();
             // Check which command has been inputted
             switch (input.toLowerCase()){
-                case "-help":
+                case "-help": case "-h":
                     this.inputCommand = new DisplayPossibleInputsCommand(this.receiver);
                     this.inputCommand.execute();
                     break;
-                case "-shape":
+                case "-shape": case "-sh":
                     this.getBoardShape();
                     break;
-                case "-multiplayer":
+                case "-multiplayer": case "-m":
                     this.getMultiplayer();
                     break;
-                case "-difficulty":
+                case "-difficulty": case "-diff":
                     this.getBoardDifficulty();
                     break;
-                case "-dyslexia":
+                case "-dyslexia": case "-dys":
                     this.getDyslexiaMode();
                     break;
-                case "-start":
-                    System.out.println("You inputted the -start");
+                case "-start": case "-s": case "":
                     startCommandCalled = true;
-                    this.inputCommand = new StartGameCommand(this.receiver);
-                    this.inputCommand.execute();
-
                     break;
                 default:
                     System.out.println("Invalid command");
-                    break;
-            }
-        }
-    }
-
-    /**
-     * Read the word that the user inputs while playing the game
-     */
-    public void readGameInput(){
-        boolean stopCommandCalled = false;
-
-        // User can keep inputting commands until they input the start command
-        while(!stopCommandCalled){
-            this.inputCommand = new DisplayBoardCommand(this.receiver);
-            this.inputCommand.execute();
-            System.out.println("Input word (or type -end to end your turn:");
-            String input = this.scanner.nextLine();
-            // Check the word being inputted, or the -end command to end the round
-            switch (input.toLowerCase()){
-                case "-end":
-                    stopCommandCalled = true;
-                    this.inputCommand = new EndTurnCommand(this.receiver);
-                    this.inputCommand.execute();
-                    break;
-                case "-hint":
-                    this.inputCommand = new GetHintCommand(this.receiver);
-                    this.inputCommand.execute();
-                    break;
-                default:
-                    this.inputCommand = new CheckWordCommand(this.receiver, input.toLowerCase());
-                    this.inputCommand.execute();
                     break;
             }
         }
