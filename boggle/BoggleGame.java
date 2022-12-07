@@ -142,7 +142,7 @@ public class BoggleGame {
         while (new_round){
             int boardSize = 0;
             if (this.boardShape == "diamond") {
-                boardSize = 13;
+                boardSize = 81;
             } else if (this.boardShape == "triangle") {
                 boardSize = 9;
             } else { // board is rectangular
@@ -262,9 +262,9 @@ public class BoggleGame {
         int boardSize;
         reader.getGameSettings();
         if (this.boardShape == "diamond") {
-            boardSize = 13;
+            boardSize = 89;
         } else if (this.boardShape == "triangle") {
-            boardSize = 9;
+            boardSize = 89;
         } else { // board is rectangular
             boardSize = this.boardDimensions[0] * this.boardDimensions[1];
         }

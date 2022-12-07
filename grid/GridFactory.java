@@ -24,7 +24,7 @@ public class GridFactory {
         if (gridName.equals("rectangle")) {
             this.board = new RectangleGrid(row, col, dyslexiaMode);
         } else if (gridName.equals("diamond")) {
-            this.board = new DiamondGrid(5, 5, dyslexiaMode);
+            this.board = new DiamondGrid(9, 9, dyslexiaMode);
         } else {
             this.board = new TriangleGrid(5, 3, dyslexiaMode);
         }

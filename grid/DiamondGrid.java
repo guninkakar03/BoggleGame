@@ -94,6 +94,7 @@ public class DiamondGrid extends Grid {
             for (int j = 0; j < this.width; j++) {
                 this.board[i][j] = new_letters.charAt(new_index);
                 new_index += 1;
+
             }
         }
 

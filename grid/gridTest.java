@@ -47,7 +47,7 @@ public class gridTest {
 
     @Test
     void setupBoardDiamond() {
-        DiamondGrid grid = new DiamondGrid(13,13, true);
+        DiamondGrid grid = new DiamondGrid(9,9, true);
         String letters = "";
         letters = letters + "0123456789hdssfvdggvdgbshhdh" +
                 "bcvbcvdggdggdbbfbhcfhffbhffbfbfbbfbffbbf" +
