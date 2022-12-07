@@ -154,7 +154,9 @@ public class BoggleGame {
             findAllWords1.findWords();
             //Step 3: Instantiate new FindAllWords class
             Map<String, ArrayList<Position>> allWords = findAllWords1.allWords;
-            System.out.println(allWords.keySet());
+
+            //Print the possible words for testing purposes
+            //System.out.println(allWords.keySet());
 
             if(multiplayer){ //play multiplayer game
                 this.human = new HumanPlayer(allWords,this.board);
